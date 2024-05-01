@@ -15,6 +15,7 @@ const profile = () => {
   return (
     <View className="">
       <TouchableOpacity className="w-full items-center mb-10" onPress={logout}>
+        <Text>Profile</Text>
         <Text>Logout</Text>
       </TouchableOpacity>
     </View>
