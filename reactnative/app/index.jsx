@@ -9,7 +9,6 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 const App = () => {
   const { isLoading, isLoggedIn, setIsLoggedIn } = useGlobalContext();
   useEffect(() => {
-    // Check if user is already logged in from AsyncStorage
     const checkLoginStatus = async () => {
       try {
         const userLoggedIn = await AsyncStorage.getItem("userData");
@@ -33,12 +32,12 @@ const App = () => {
           <View className="relative mt-5">
             <Text className="text-3xl text-white font-bold text-center">
               Discover Endless Possibilities with{" "}
-              <Text className="text-secondary-200">Aora</Text>
+              <Text className="text-secondary-200">Conserve</Text>
             </Text>
           </View>
           <Text className="text-sm font-pregular text-gray-100 mt-7 text-center">
             Where creativity meets innovation:embark on a journey of limitless
-            expression with Conserv
+            expression with Conserve
           </Text>
           <CustomButton
             title="Continue with Email"

@@ -32,13 +32,11 @@ const SignIn = () => {
         Alert.alert("Error", data.error);
         return;
       }
-      // Save user data to AsyncStorage
-      await AsyncStorage.setItem("userData", JSON.stringify(data));
+
+      await AsyncStorage.setItem("userData", JSON.stringify(data.token));
       setUser(JSON.stringify(data));
       setIsLoggedIn(true);
       router.replace("/profile");
-
-      // Navigate to the next screen or perform other actions
     } catch (error) {
       console.log(error.message);
     }
@@ -54,7 +52,7 @@ const SignIn = () => {
           }}
         >
           <Text className="text-2xl font-semibold text-white mt-10 font-psemibold">
-            Log in to Conserve
+            Sign In to Converse
           </Text>
 
           <FormField
@@ -87,7 +85,7 @@ const SignIn = () => {
               href="/sign-up"
               className="text-lg font-psemibold text-secondary"
             >
-              Signin
+              SignUp
             </Link>
           </View>
         </View>
