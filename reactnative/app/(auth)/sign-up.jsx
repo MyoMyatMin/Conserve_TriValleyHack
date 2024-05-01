@@ -16,8 +16,31 @@ const SignIn = () => {
     username: "",
   });
 
-  const submit = async () => {
-    console.log("Here");
+  const handleSignUp = async () => {
+    try {
+      const apiUrl = process.env.EXPO_PUBLIC_API_URL;
+      const res = await fetch(`${apiUrl}/api/users/signup`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(form),
+      });
+
+      const data = await res.json();
+
+      if (data.error) {
+        Alert.alert("Error", data.error);
+        return;
+      }
+
+      await AsyncStorage.setItem("userData", JSON.stringify(data.token));
+      setUser(JSON.stringify(data));
+      setIsLoggedIn(true);
+      router.replace("/profile");
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 
   return (
@@ -30,7 +53,7 @@ const SignIn = () => {
           }}
         >
           <Text className="text-2xl font-semibold text-white mt-10 font-psemibold">
-            Log in to Conserve
+            Sign Up to Conserve
           </Text>
 
           <FormField
@@ -56,8 +79,8 @@ const SignIn = () => {
           />
 
           <CustomButton
-            title="Sign In"
-            handlePress={submit}
+            title="Sign Up"
+            handlePress={handleSignUp}
             containerStyles="mt-7"
             isLoading={isSubmitting}
           />
@@ -70,7 +93,7 @@ const SignIn = () => {
               href="/sign-in"
               className="text-lg font-psemibold text-secondary"
             >
-              Signup
+              Signin
             </Link>
           </View>
         </View>
