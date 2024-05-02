@@ -4,6 +4,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useGlobalContext } from "../../context/GlobalProvider";
 import { router } from "expo-router";
 import CustomButton from "../components/CustomButton";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const profile = () => {
   const { setIsLoggedIn, setUser } = useGlobalContext();
@@ -28,15 +29,15 @@ const profile = () => {
     router.replace("/sign-in");
   };
   return (
-    <View className="items-center">
-      <Text>Username : {record.username}</Text>
-      <Text>Email : {record.email}</Text>
+    <SafeAreaView className="items-center h-full bg-primary">
+      <Text className="text-2xl text-secondary">Username : {record.username}</Text>
+      <Text className="text-2xl text-secondary">Email : {record.email}</Text>
       <CustomButton
         title={"Logout"}
         handlePress={logout}
         containerStyles={"mt-7"}
       ></CustomButton>
-    </View>
+    </SafeAreaView>
   );
 };
 
