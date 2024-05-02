@@ -23,7 +23,7 @@ const App = () => {
 
     checkLoginStatus();
   }, []);
-  if (isLoggedIn) return <Redirect href={"/profile"} />;
+  if (isLoggedIn) return <Redirect href={"/home"} />;
 
   return (
     <SafeAreaView className="bg-black h-full">
