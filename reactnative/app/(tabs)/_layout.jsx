@@ -34,14 +34,14 @@ const TabsLayout = () => {
             backgroundColor: "#161622",
             borderBottomWidth: 1,
             borderBottomColor: "#23533",
-            borderTopWidth: 2,
+            borderTopWidth: 1,
             borderTopColor: "#FFFFFF",
             height: 84,
             padding: 10
           },
         }}
       >
-        <Tabs.Screen
+        {/* <Tabs.Screen
           name="profile"
           options={{
             title: "Profile",
@@ -50,7 +50,7 @@ const TabsLayout = () => {
               <TabIcon color={color} name={"Profile"} focused={focused} />
             ),
           }}
-        />
+        /> */}
         <Tabs.Screen
           name="survey"
           options={{

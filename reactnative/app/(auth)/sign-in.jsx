@@ -36,7 +36,7 @@ const SignIn = () => {
       await AsyncStorage.setItem("userData", JSON.stringify(data.token));
       setUser(JSON.stringify(data));
       setIsLoggedIn(true);
-      router.replace("/profile");
+      router.replace("/home");
     } catch (error) {
       console.log(error.message);
     }

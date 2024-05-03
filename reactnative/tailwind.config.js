@@ -17,6 +17,10 @@ module.exports = {
           100: "#2D7063", /*background*/ 
           200: "#EBFF00" /*trophy */
         },
+        purple: {
+          DEFAULT: "#271D3B",
+        },
+
         black: {
           DEFAULT: "#000",
           100: "#1E1E2D",

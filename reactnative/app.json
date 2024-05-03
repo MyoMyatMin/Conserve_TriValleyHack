@@ -1,16 +1,16 @@
 {
   "expo": {
-    "name": "reactnative",
+    "name": "CONSERVE",
     "slug": "reactnative",
     "scheme": "reactnative",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/icons/polar_cute.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/icons/polar.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#2D7063"
     },
     "assetBundlePatterns": [
       "**/*"
