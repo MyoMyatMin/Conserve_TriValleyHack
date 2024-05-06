@@ -5,7 +5,7 @@ import { Circle, G, Svg } from 'react-native-svg'
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
 const AnimatedTextInput = Animated.createAnimatedComponent(TextInput);
 
-const CircularProgressBar = ({
+const CircularProgressBarTotal = ({
   percentage = 1200,
   radius = 40,
   strokeWidth = radius/10,
@@ -65,7 +65,6 @@ const CircularProgressBar = ({
     };
   }, [max, percentage]);
 
-  // Change stroke color to red when percentage and max are equal
   const circleStrokeColor = percentage >= max ? 'red' : color;
 
   return (
@@ -92,36 +91,31 @@ const CircularProgressBar = ({
             strokeDashoffset={circleCircumference}
             strokeLinecap='round'
           />
-          <Image
-            source={imageSource} // Use the passed image source
+          <View 
             style={{
               position: 'absolute',
-              width: radius,
+              width: radius *1.5,
               height: radius,
-              left: radius * 0.5,
-              top: radius * 0.5,
-              resizeMode: 'contain',
+              left: radius *0.3,
+              top: radius * 0.6,
             }}
-          />
+            className="flex items-center">
+            <Text className="text-secondary mt-2">{title}</Text>
+            <AnimatedTextInput
+                ref={inputRef}
+                underlineColorAndroid="transparent"
+                editable={false}
+                defaultValue="0"
+                style={[
+                    { fontSize: radius / 3, color: textColor ?? color },
+                    {fontWeight: '500', marginTop: 5}
+                ]}
+            />
+          </View>
         </G>
        
       </Svg>
-      <Text className="text-secondary mt-2">{title}</Text>
-      <AnimatedTextInput
-          ref={inputRef}
-          underlineColorAndroid="transparent"
-          editable={false}
-          defaultValue="0"
-          style={[
-            { fontSize: radius / 3, color: textColor ?? color },
-            {fontWeight: '500', textAlign: 'left', marginTop: 2}
-          ]}
-      />
-      
     </View>
   );
 }
-
-
-
-export default CircularProgressBar;
+export default CircularProgressBarTotal;

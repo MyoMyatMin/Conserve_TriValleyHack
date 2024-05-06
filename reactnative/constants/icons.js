@@ -17,12 +17,14 @@ import greenProfile from "../assets/icons/green_profile.png"
 import trash from "../assets/icons/trash.png";
 import bus from "../assets/icons/bus.png"
 import total from "../assets/icons/total2.png"
+import electricity from "../assets/icons/electricity.png"
 
 export default {
   Hamburger,
   trash,
   bus,
   total,
+  electricity,
   play,
   bookmark,
   home,
