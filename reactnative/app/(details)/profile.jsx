@@ -5,9 +5,10 @@ import { useGlobalContext } from "../../context/GlobalProvider";
 import { router, useNavigation } from "expo-router";
 import CustomButton from "../components/CustomButton";
 import { SafeAreaView } from "react-native-safe-area-context";
-import {icons} from '../../constants'
+import {icons, images} from '../../constants'
 
 const profile = () => {
+  
   const navigation = useNavigation();
   const { setIsLoggedIn, setUser } = useGlobalContext();
   const [record, setRecord] = useState("");
@@ -45,11 +46,11 @@ const profile = () => {
         </View>
       </View>
 
-      <View className="flex h-5/6 justify-between">
-        <View className="md:container md:mx-auto p-6 my-4 bg-purple rounded-2xl">
+      <View className="flex h-5/6 justify-between p-2">
+        <View className="min-w-full p-6 my-6 bg-purple rounded-2xl">
           <View className="flex flex-row justify-start items-center gap-x-4 mb-6">
             <View>
-              <Image source={icons.greenProfile} className="rounded-r" />
+              <Image source={images.profile} className="rounded-full w-[48] h-[48]" resizeMode="contain"/>
             </View>
             <View className="border-b-[2px] border-secondary">  
               <Text className="text-2xl font-psemibold text-secondary">{record.username}</Text>
