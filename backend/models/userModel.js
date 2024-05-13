@@ -17,13 +17,19 @@ const userSchema = mongoose.Schema(
       minLength: 6,
       required: true,
     },
-    achievements: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Achievements",
-        default: [],
-      },
-    ],
+    achievements: [String],
+    streak: {
+      type: Number,
+      default: 0,
+    },
+    profilePic: {
+      type: String,
+      default: "",
+    },
+    conserveAmount: {
+      type: Number,
+      default: 0,
+    },
   },
   {
     timestamps: true,
