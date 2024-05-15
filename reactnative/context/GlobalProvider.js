@@ -79,6 +79,7 @@ const GlobalProvider = ({ children }) => {
       let prevDate = await loadInitialDays()
       const currentDate = moment()
       // console.log(currentDate.date())
+      console.log(currentHour)
       const isNewDay = currentDate.date() != moment(prevDate).date()
 
       console.log(isNewDay)
@@ -94,49 +95,48 @@ const GlobalProvider = ({ children }) => {
         setPreviousDate(currentDate)
         await AsyncStorage.setItem('previousDate', currentDate.toISOString())
         await saveStates(myobj)
-      } else {
-        let myobj = await loadInitialStates()
-        let newMorning = 'pending'
-        let newAfternoon = 'pending'
-        let newNight = 'pending'
-
-        if (
-          currentHour > 0 &&
-          currentHour <= 23 &&
-          myobj.objmorning != 'completed'
-        ) {
-          newMorning = 'ready'
-        } else if (myobj.objmorning == 'completed') {
-          newMorning = 'completed'
-        } else {
-          newMorning = 'pending'
-        }
-
-        if (currentHour >= 12 && myobj.objafternoon != 'completed') {
-          newAfternoon = 'ready'
-        } else if (myobj.objafternoon === 'completed') {
-          newAfternoon = 'completed'
-        } else {
-          newAfternoon = 'pending'
-        }
-
-        if (currentHour >= 18 && myobj.objnight != 'completed') {
-          newNight = 'ready'
-        } else if (myobj.objnight == 'pending') {
-          newNight = 'pending'
-        } else if (myobj.objnight === 'completed') {
-          newNight = 'completed'
-        }
-
-        myobj.objmorning = newMorning
-        myobj.objafternoon = newAfternoon
-        myobj.objnight = newNight
-        setMorning(newMorning)
-        setAfternoon(newAfternoon)
-        setNight(newNight)
-
-        await saveStates(myobj)
       }
+      let myobj = await loadInitialStates()
+      let newMorning = 'pending'
+      let newAfternoon = 'pending'
+      let newNight = 'pending'
+
+      if (
+        currentHour >= 0 &&
+        currentHour <= 23 &&
+        myobj.objmorning != 'completed'
+      ) {
+        newMorning = 'ready'
+      } else if (myobj.objmorning == 'completed') {
+        newMorning = 'completed'
+      } else {
+        newMorning = 'pending'
+      }
+
+      if (currentHour >= 12 && myobj.objafternoon != 'completed') {
+        newAfternoon = 'ready'
+      } else if (myobj.objafternoon === 'completed') {
+        newAfternoon = 'completed'
+      } else {
+        newAfternoon = 'pending'
+      }
+
+      if (currentHour >= 18 && myobj.objnight != 'completed') {
+        newNight = 'ready'
+      } else if (myobj.objnight == 'pending') {
+        newNight = 'pending'
+      } else if (myobj.objnight === 'completed') {
+        newNight = 'completed'
+      }
+
+      myobj.objmorning = newMorning
+      myobj.objafternoon = newAfternoon
+      myobj.objnight = newNight
+      setMorning(newMorning)
+      setAfternoon(newAfternoon)
+      setNight(newNight)
+
+      await saveStates(myobj)
     }
 
     updateStates()

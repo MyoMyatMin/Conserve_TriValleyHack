@@ -61,19 +61,19 @@ const Survey = () => {
       (morning !== 'completed' || afternoon !== 'completed') &&
       night === 'ready'
     ) {
-      Alert.alert('Need to finish previous survey fist!')
-    } else if (
-      morning === 'completed' ||
-      afternoon === 'completed' ||
-      night === 'completed'
-    ) {
-      Alert.alert('Already Taken!')
-    } else if (
-      morning === 'pending' ||
-      afternoon === 'pending' ||
-      night === 'pending'
-    ) {
-      Alert.alert('Can not take yet')
+      Alert.alert('Need to finish Both Mornign and Afternoon Surveys first!')
+    } else if (survey == 'night' && night === 'completed') {
+      Alert.alert('Morning Survey Already Taken!')
+    } else if (survey == 'afternoon' && afternoon === 'completed') {
+      Alert.alert('Afternoon Survey Already Taken!')
+    } else if (survey == 'morning' && morning === 'completed') {
+      Alert.alert('Night Survey Already Taken!')
+    } else if (morning === 'pending' && survey == 'morning') {
+      Alert.alert('Can not take Morning Survey yet')
+    } else if (afternoon === 'pending' && survey == 'afternoon') {
+      Alert.alert('Can not take Afternoon Survey yet')
+    } else if (night === 'pending' && survey == 'night') {
+      Alert.alert('Can not take Night Survey yet')
     }
   }
   return (
