@@ -24,6 +24,7 @@ import nightIcon from '../assets/icons/nightIcon.png'
 import completedIcon from '../assets/icons/completedIcon.png'
 import readyIcon from '../assets/icons/readyIcon.png'
 import pendingIcon from '../assets/icons/pendingIcon.png'
+import trophy from '../assets/icons/trophy.png'
 
 export default {
   Hamburger,
@@ -52,4 +53,5 @@ export default {
   completedIcon,
   readyIcon,
   pendingIcon,
+  trophy
 }
