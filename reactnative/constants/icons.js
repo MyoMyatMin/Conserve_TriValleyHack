@@ -25,6 +25,7 @@ import completedIcon from '../assets/icons/completedIcon.png'
 import readyIcon from '../assets/icons/readyIcon.png'
 import pendingIcon from '../assets/icons/pendingIcon.png'
 import user from '../assets/icons/user.png'
+import trophy from '../assets/icons/trophy.png'
 
 export default {
   user,
@@ -54,4 +55,5 @@ export default {
   completedIcon,
   readyIcon,
   pendingIcon,
+  trophy
 }
