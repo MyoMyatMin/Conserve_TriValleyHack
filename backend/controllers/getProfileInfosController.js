@@ -36,6 +36,7 @@ const getProfileInfos = async (req, res) => {
       Math.floor(accountAgeMilliseconds / (1000 * 60 * 60 * 24)) + 1;
 
     res.status(200).json({
+      id: user._id,
       username: user.username,
       email: user.email,
       profilePic: user.profilePic,
