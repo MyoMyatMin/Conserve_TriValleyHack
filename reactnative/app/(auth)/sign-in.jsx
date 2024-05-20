@@ -32,7 +32,6 @@ const SignIn = () => {
         Alert.alert("Error", data.error);
         return;
       }
-
       await AsyncStorage.setItem("userData", JSON.stringify(data.token));
       setUser(JSON.stringify(data));
       setIsLoggedIn(true);
