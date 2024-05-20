@@ -27,6 +27,7 @@ import pendingIcon from '../assets/icons/pendingIcon.png'
 import user from '../assets/icons/user.png'
 import trophy from '../assets/icons/trophy.png'
 
+
 export default {
   user,
   Hamburger,

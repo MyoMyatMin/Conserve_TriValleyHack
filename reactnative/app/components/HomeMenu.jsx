@@ -4,15 +4,15 @@ import React from 'react'
 const HomeMenu = ({handleDayPress, handleMonthPress, handleWeekPress, isDay, isMonth, isWeek}) => {
   return (
     <>
-      <View className="flex flex-row justify-center gap-x-12">
+      <View className="flex flex-row justify-center gap-x-10">
         <TouchableOpacity onPress={handleDayPress}>
-          <Text style={isDay && styles.activeButton} className="text-xl text-secondary">Day</Text>
+          <Text style={isDay && styles.activeButton} className="text-lg text-secondary">Day</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={handleWeekPress}>
-          <Text style={isWeek && styles.activeButton}  className="text-xl text-secondary">Week</Text>
+          <Text style={isWeek && styles.activeButton}  className="text-lg text-secondary">Week</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={handleMonthPress}>
-          <Text style={isMonth && styles.activeButton} className="text-xl text-secondary">Month</Text>
+          <Text style={isMonth && styles.activeButton} className="text-lg text-secondary">Month</Text>
         </TouchableOpacity>
       </View>
     </>
