@@ -12,14 +12,14 @@ const DayDetails = () => {
   return (
     <ScrollView>
       <View className="flex justify-center items-center mt-4">
-        <CircularProgressBarTotal title={'Today total'} percentage={1000} max={1000} radius={100}/>
+        <CircularProgressBarTotal title={'Today Total'} percentage={1000} max={1000} radius={130}/>
       </View>
       <View className="flex flex-row justify-around items-center my-6 ">
         <CircularProgressBar title={'Consumption'} percentage={500} max={1000} radius={32} imageSource={icons.Hamburger}/>
         <CircularProgressBar title={'Transportation'} percentage={1200} max={1000} radius={32} imageSource={icons.bus}/>
         <CircularProgressBar title={'Plastic Usage'} percentage={300} max={600} radius={32} imageSource={icons.trash}/>
       </View>
-      <View className="flex items-center justify-center p-6 mt-4">
+      <View className="flex items-center justify-center p-6 mt-4 mr-1">
         <View>
           <LineChart 
             data = {data} 

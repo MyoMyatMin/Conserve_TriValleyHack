@@ -26,6 +26,7 @@ import readyIcon from '../assets/icons/readyIcon.png'
 import pendingIcon from '../assets/icons/pendingIcon.png'
 import trophy from '../assets/icons/trophy.png'
 
+
 export default {
   Hamburger,
   trash,

@@ -13,7 +13,7 @@ const MonthDetails = () => {
   return (
     <ScrollView>
       <View className="flex justify-center items-center mt-4">
-        <CircularProgressBarTotal title={'This month total'} percentage={100} max={1000} radius={100}/>
+        <CircularProgressBarTotal title={'This month total'} percentage={100} max={1000} radius={130}/>
       </View>
       <View className="flex flex-row justify-around items-center my-6 ">
         <CircularProgressBar title={'Consumption'} percentage={600} max={1000} radius={32} imageSource={icons.Hamburger}/>
@@ -21,8 +21,8 @@ const MonthDetails = () => {
         <CircularProgressBar title={'Plastic Usage'} percentage={350} max={600} radius={32} imageSource={icons.trash}/>
       </View>
       <ProgressBar />
-      <View className="flex items-center justify-center p-6 mt-12">
-        <View>
+      <View className="flex items-center justify-center p-6 mt-12 mr-6">
+        <View >
           <LineChart 
             data = {data} 
             maxValue={maxValue} 
@@ -35,7 +35,7 @@ const MonthDetails = () => {
             yAxisColor={'#FFFFFF'}
             xAxisLabelTexts={labels}
             xAxisLabelTextStyle={styles.xAxisLabel}
-            spacing={28}
+            spacing={26}
             yAxisTextStyle={styles.xAxisLabel}/>
         </View>
       </View>
