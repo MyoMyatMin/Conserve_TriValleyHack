@@ -32,24 +32,32 @@ const profile = () => {
   };
   return (
     <SafeAreaView className="items-center h-full bg-primary">
-      <View className="flex flex-row justify-center">
+      <View className="flex flex-row justify-center mt-3">
         <View className="flex justify-start">
           <View>
             <TouchableOpacity
               onPress={() => navigation.navigate("(tabs)", { screen: "home" })}
             >
-              <Image source={icons.crossX} />
+              <Image 
+              source={icons.crossX}
+              style={{
+                width: 40,
+                height: 40,
+                resizeMode: 'contain',
+                marginRight: 50,
+                marginTop: 5
+              }} />
             </TouchableOpacity>
           </View>
         </View>
         <View className="flex basis-3/4">
-          <Text className="text-3xl text-center mt-2 font-psemibold text-secondary">
+          <Text className="text-3xl text-center mt-2 font-psemibold text-secondary mr-16">
             PROFILE
           </Text>
         </View>
       </View>
 
-      <View className="flex h-5/6 justify-between p-2">
+      <View className="flex h-5/6 justify-between p-3">
         <View className="min-w-full p-6 my-6 bg-purple rounded-2xl">
           <View className="flex flex-row justify-start items-center gap-x-4 mb-6">
             <View>
@@ -86,7 +94,7 @@ const profile = () => {
           </Text>
         </View>
         <View>
-          <Text className="text-xl text-secondary">Account</Text>
+          
           <CustomButton
             title={"Logout"}
             handlePress={logout}
