@@ -1,25 +1,10 @@
-const getThisWeekEachRecord = async (user_id, Record) => {
-  function convertUTCtoLocal(utcDate) {
-    var localDate = new Date(utcDate);
-    localDate.setHours(localDate.getHours() + 7); // Adjust to local time zone (+7 hours)
-    return localDate;
-  }
+import getISOWeeks from "./getISOWeeks.js";
 
-  let today = new Date(); // Get current date
-  console.log(today.getDay(), today.getDate());
-  let startOfCurrentWeek = new Date(
-    today.getFullYear(),
-    today.getMonth(),
-    today.getDate() - today.getDay()
-  );
-  console.log(startOfCurrentWeek);
-  let endOfCurrentWeek = new Date(startOfCurrentWeek);
-  endOfCurrentWeek.setDate(endOfCurrentWeek.getDate() + 7);
+const getThisWeekEachRecord = async (user_id, Record) => {
+  let { startOfCurrentWeek, endOfCurrentWeek } = getISOWeeks();
 
   // Convert dates to local time zone
-  startOfCurrentWeek = convertUTCtoLocal(startOfCurrentWeek);
-  endOfCurrentWeek = convertUTCtoLocal(endOfCurrentWeek);
-  console.log(startOfCurrentWeek, endOfCurrentWeek);
+
   const result = await Record.aggregate([
     {
       $match: {
@@ -30,7 +15,17 @@ const getThisWeekEachRecord = async (user_id, Record) => {
         user_id: user_id,
       },
     },
-
+    {
+      $addFields: {
+        localCreatedAt: {
+          $dateAdd: {
+            startDate: "$createdAt",
+            unit: "hour",
+            amount: 7,
+          },
+        },
+      },
+    },
     {
       $group: {
         _id: { $isoWeek: "$createdAt" }, // Group by ISO week

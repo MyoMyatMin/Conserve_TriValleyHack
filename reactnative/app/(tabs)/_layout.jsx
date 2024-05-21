@@ -5,19 +5,18 @@ import { Tabs, Redirect } from "expo-router";
 const TabIcon = ({ icon, color, name, focused }) => {
   // Define your image sources for each tab
   const icons = {
-    Profile: require('../../assets/icons/profile.png'),
-    Survey: require('../../assets/icons/eye.png'),
-    Home: require('../../assets/icons/polar_home.png'),
-    Insights: require('../../assets/icons/leaf_insights.png'),
+    Profile: require("../../assets/icons/profile.png"),
+    Survey: require("../../assets/icons/eye.png"),
+    Home: require("../../assets/icons/polar_home.png"),
+    Insights: require("../../assets/icons/leaf_insights.png"),
   };
 
   return (
-    <View style={{ alignItems: 'center', justifyContent: 'center', gap: 2 }}>
-      <Image
-        source={icons[name]}
-        style={{ width: 24, height: 24}}
-      />
-      <Text style={{ color: focused ? "#FFA001" : "#CDCDE0", fontSize: 12 }}>{name}</Text>
+    <View style={{ alignItems: "center", justifyContent: "center", gap: 2 }}>
+      <Image source={icons[name]} style={{ width: 24, height: 24 }} />
+      <Text style={{ color: focused ? "#FFA001" : "#CDCDE0", fontSize: 12 }}>
+        {name}
+      </Text>
     </View>
   );
 };
@@ -38,20 +37,10 @@ const TabsLayout = () => {
             borderTopWidth: 1,
             borderTopColor: "#8492A6",
             height: 74,
-            padding: 10
+            padding: 10,
           },
         }}
       >
-        {/* <Tabs.Screen
-          name="profile"
-          options={{
-            title: "Profile",
-            headerShown: false,
-            tabBarIcon: ({ color, focused }) => (
-              <TabIcon color={color} name={"Profile"} focused={focused} />
-            ),
-          }}
-        /> */}
         <Tabs.Screen
           name="survey"
           options={{
@@ -64,6 +53,7 @@ const TabsLayout = () => {
         />
         <Tabs.Screen
           name="home"
+          initialParams={{ userID: 1 }}
           options={{
             title: "Home",
             headerShown: false,
@@ -83,7 +73,7 @@ const TabsLayout = () => {
           }}
         />
       </Tabs>
-    
+
       <StatusBar backgroundColor="#161622" barStyle="light-content" />
     </>
   );
