@@ -14,6 +14,7 @@ import getTotalRecordsRoutes from "./routes/getTotalRecordsRoutes.js";
 import { v2 as cloudinary } from "cloudinary";
 import getProfileInfosRoutes from "./routes/getProfileInfosRoutes.js";
 import electricityRecordRoutes from "./routes/electricityRecordRoutes.js";
+import generateDummyFinal from "./controllers/generateDummyFinal.js";
 
 const app = express();
 dotenv.config();
@@ -42,6 +43,7 @@ app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
   connectDB();
   // dropTables();
+  //generateDummyFinal();
   // generateData();
 
   //generateDataForStreak();

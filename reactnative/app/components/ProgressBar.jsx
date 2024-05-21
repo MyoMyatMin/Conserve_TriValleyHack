@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, Animated, Image } from 'react-native';
-import { icons } from '../../constants';
+import React, { useState, useEffect } from "react";
+import { View, Text, StyleSheet, Animated, Image } from "react-native";
+import { icons } from "../../constants";
 
-const ProgressBar = () => {
+const ProgressBar = ({ thisMonthElectricity }) => {
   const [progress] = useState(new Animated.Value(0));
-  const [value] = useState(70);
-  const [barColor, setBarColor] = useState('#26D6AF');
+  const [value] = useState(thisMonthElectricity);
+  const [barColor, setBarColor] = useState("#26D6AF");
 
   useEffect(() => {
     Animated.timing(progress, {
@@ -17,45 +17,54 @@ const ProgressBar = () => {
 
   useEffect(() => {
     if (value > 75 && value < 100) {
-      setBarColor('#e3a024');
+      setBarColor("#e3a024");
     } else if (value >= 100) {
-      setBarColor('#db2212');
+      setBarColor("#db2212");
     }
   }, [value]);
 
   const widthInterpolate = progress.interpolate({
     inputRange: [0, 100],
-    outputRange: ['0%', `${value}%`]
+    outputRange: ["0%", `${value}%`],
   });
 
   return (
     <View style={styles.container}>
-      <Image style={styles.barIcon} source={icons.electricity} resizeMode='contain'/>
-      <Animated.View style={[styles.bar, { width: widthInterpolate, backgroundColor: barColor }]} />
+      <Image
+        style={styles.barIcon}
+        source={icons.electricity}
+        resizeMode="contain"
+      />
+      <Animated.View
+        style={[
+          styles.bar,
+          { width: widthInterpolate, backgroundColor: barColor },
+        ]}
+      />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   barIcon: {
-    position: 'absolute',
+    position: "absolute",
     left: 10,
     top: 2,
     zIndex: 2,
     width: 30,
-    padding: 2
+    padding: 2,
   },
   container: {
     height: 36,
-    backgroundColor: '#271D3B',
+    backgroundColor: "#271D3B",
     borderRadius: 10,
     margin: 10,
-    overflow: 'hidden',
+    overflow: "hidden",
   },
   bar: {
-    height: '100%',
+    height: "100%",
     borderRadius: 10,
-    position: 'absolute',
+    position: "absolute",
     left: 0,
     top: 0,
   },
