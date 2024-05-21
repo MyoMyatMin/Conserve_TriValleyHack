@@ -8,6 +8,7 @@ import getThisWeekEachRecord from "../utils/helper/getThisWeekEachRecord.js";
 import getThisMonthEachRecord from "../utils/helper/getThisMonthEachRecord.js";
 import ElectricityRecord from "../models/electricityRecordModel.js";
 import getThisMonthElectricity from "../utils/helper/getThisMonthElectricity.js";
+import getISOWeeks from "../utils/helper/getISOWeeks.js";
 
 const monthly = async (req, res) => {
   try {
@@ -39,11 +40,6 @@ const monthly = async (req, res) => {
           totalData: { $sum: "$data" }, // Calculate total data for each month
         },
       },
-      {
-        $sort: {
-          _id: -1,
-        },
-      },
     ]);
 
     const electricityData = await ElectricityRecord.aggregate([
@@ -69,8 +65,7 @@ const monthly = async (req, res) => {
         month.totalData += electricityRecord.totalData;
       }
     });
-
-    twelveMonthsAgo.sort((a, b) => new Date(b._id) - new Date(a._id));
+    twelveMonthsAgo.sort((a, b) => new Date(a._id) - new Date(b._id));
 
     const thismonthFood = await getThisMonthEachRecord(user_id, FoodRecord);
     const thismonthTransport = await getThisMonthEachRecord(
@@ -112,29 +107,7 @@ const monthly = async (req, res) => {
 
 const weekly = async (req, res) => {
   const user_id = req.user._id;
-  function convertUTCtoLocal(utcDate) {
-    var localDate = new Date(utcDate);
-    localDate.setHours(localDate.getHours() + 7); // Adjust to local time zone (+7 hours)
-    return localDate;
-  }
-
-  let today = new Date(); // Get current date
-
-  let startOfCurrentWeek = new Date(
-    today.getFullYear(),
-    today.getMonth(),
-    today.getDate() - today.getDay()
-  );
-  let endOfCurrentWeek = new Date(startOfCurrentWeek);
-  endOfCurrentWeek.setDate(endOfCurrentWeek.getDate() + 7); // End of current week
-
-  let startOfFourWeeksAgo = new Date(startOfCurrentWeek);
-  startOfFourWeeksAgo.setDate(startOfFourWeeksAgo.getDate() - 28); // Start of four weeks ago
-
-  // Convert dates to local time zone
-  startOfCurrentWeek = convertUTCtoLocal(startOfCurrentWeek);
-  endOfCurrentWeek = convertUTCtoLocal(endOfCurrentWeek);
-  startOfFourWeeksAgo = convertUTCtoLocal(startOfFourWeeksAgo);
+  let { startOfFourWeeksAgo, endOfCurrentWeek } = getISOWeeks();
 
   try {
     const fourWeeksAgo = await DailyTotalRecord.aggregate([
@@ -147,24 +120,35 @@ const weekly = async (req, res) => {
           user_id: user_id,
         },
       },
-
+      {
+        $addFields: {
+          localCreatedAt: {
+            $dateAdd: {
+              startDate: "$createdAt",
+              unit: "hour",
+              amount: 7,
+            },
+          },
+        },
+      },
       {
         $group: {
           _id: {
-            $isoWeek: {
-              date: "$createdAt",
-              timezone: "Asia/Bangkok",
-            },
+            isoWeekYear: { $isoWeekYear: "$localCreatedAt" },
+            isoWeek: { $isoWeek: "$localCreatedAt" },
           },
+
           totalData: { $sum: "$data" },
         },
       },
       {
         $sort: {
-          _id: -1,
+          "_id.isoWeekYear": 1,
+          "_id.isoWeek": 1,
         },
       },
     ]);
+
     const thisWeekFood = await getThisWeekEachRecord(user_id, FoodRecord);
     const thisWeekTransport = await getThisWeekEachRecord(
       user_id,
@@ -193,6 +177,12 @@ const weekly = async (req, res) => {
 };
 
 const lastSevenDays = async (req, res) => {
+  function convertUTCtoLocal(utcDate) {
+    var localDate = new Date(utcDate);
+    localDate.setHours(localDate.getHours() + 7); // Adjust to local time zone (+7 hours)
+    return localDate;
+  }
+
   try {
     const user_id = req.user._id;
 
@@ -205,20 +195,27 @@ const lastSevenDays = async (req, res) => {
     const todayTotal = await getTodayEachRecord(user_id, DailyTotalRecord);
     const today = new Date();
     const sevenDaysAgo = new Date(today);
-    sevenDaysAgo.setDate(today.getDate() - 7); // Calculate date 7 days ago
+    sevenDaysAgo.setDate(today.getDate() - 7);
     const recordsWithinLastSevenDays = await DailyTotalRecord.find({
       user_id: user_id,
       createdAt: { $gte: sevenDaysAgo, $lte: today },
     })
       .sort({ createdAt: 1 })
-      .select({ _id: 0, data: 1 });
+      .select({ _id: 0, createdAt: 1, data: 1 });
+    const recordsWithLocalTime = recordsWithinLastSevenDays.map((record) => {
+      const { data, createdAt } = record._doc ? record._doc : record;
+      return {
+        data: data,
+        createdAt: convertUTCtoLocal(createdAt),
+      };
+    });
 
     const result = [
       { todayFood: todayFood },
       { todayTransport: todayTransport },
       { todayRecycle: todayRecycle },
       { todayTotal: todayTotal },
-      { recordsWithinLastSevenDays: recordsWithinLastSevenDays },
+      { recordsWithinLastSevenDays: recordsWithLocalTime },
     ];
     res.status(200).json(result);
   } catch (error) {
