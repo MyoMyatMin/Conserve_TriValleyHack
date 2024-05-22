@@ -68,24 +68,32 @@ const MonthDetails = ({ monthlyData }) => {
           imageSource={icons.trash}
         />
       </View>
-      <ProgressBar thisMonthElectricity={monthlyData[3]?.thisMonthElectricity || 0} />
+      <ProgressBar
+        thisMonthElectricity={monthlyData[3]?.thisMonthElectricity || 0}
+      />
       <View className="flex items-center justify-center p-6 mt-12 mr-6">
         <View>
-          <LineChart
-            data={data}
-            maxValue={100000}
-            noOfSections={4}
-            isAnimated={true}
-            color1="#26D6AF"
-            dataPointsColor1="#FFFFFF"
-            overflowTop={200}
-            xAxisColor="#FFFFFF"
-            yAxisColor={"#FFFFFF"}
-            xAxisLabelTexts={months}
-            xAxisLabelTextStyle={styles.xAxisLabel}
-            spacing={26}
-            yAxisTextStyle={styles.xAxisLabel}
-          />
+          {monthly && monthly.length > 0 ? (
+            <LineChart
+              data={data}
+              maxValue={100000}
+              noOfSections={4}
+              isAnimated={true}
+              color1="#26D6AF"
+              dataPointsColor1="#FFFFFF"
+              overflowTop={200}
+              xAxisColor="#FFFFFF"
+              yAxisColor={"#FFFFFF"}
+              xAxisLabelTexts={months}
+              xAxisLabelTextStyle={styles.xAxisLabel}
+              spacing={26}
+              yAxisTextStyle={styles.xAxisLabel}
+            />
+          ) : (
+            <View className="flex items-center justify-center">
+              <Text className="text-white text-lg">No data available</Text>
+            </View>
+          )}
         </View>
       </View>
     </ScrollView>

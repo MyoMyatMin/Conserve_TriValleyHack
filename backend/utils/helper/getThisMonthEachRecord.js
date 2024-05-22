@@ -39,6 +39,9 @@ const getThisMonthEachRecord = async (user_id, Record) => {
       $limit: 1,
     },
   ]);
+  if (result.length === 0) {
+    return 0;
+  }
   return result[0].totalData;
 };
 

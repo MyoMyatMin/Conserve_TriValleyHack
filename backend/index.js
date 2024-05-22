@@ -9,7 +9,7 @@ import recyclingRecordRoutes from "./routes/recyclingRecordRoutes.js";
 import generateData from "./controllers/generateData.js";
 import generateDataForStreak from "./controllers/generateDataForStreak.js";
 import dummyRoutes from "./routes/dummyRoutes.js";
-import dropTables from "./controllers/dropTables.js";
+import { dropTables, deleteRecordsByUserId } from "./controllers/dropTables.js";
 import getTotalRecordsRoutes from "./routes/getTotalRecordsRoutes.js";
 import { v2 as cloudinary } from "cloudinary";
 import getProfileInfosRoutes from "./routes/getProfileInfosRoutes.js";
@@ -42,7 +42,8 @@ app.use("/api/getProfileInfos", getProfileInfosRoutes);
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
   connectDB();
-  // dropTables();
+  //  dropTables();
+  //deleteRecordsByUserId("664d9ad72037ed7c1238c526");
   //generateDummyFinal();
   // generateData();
 
