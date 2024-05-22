@@ -57,7 +57,7 @@ const monthly = async (req, res) => {
       },
     ]);
 
-    twelveMonthsAgo.forEach((month) => {
+    twelveMonthsAgo?.forEach((month) => {
       const electricityRecord = electricityData.find(
         (record) => record._id === month._id
       );
@@ -65,9 +65,11 @@ const monthly = async (req, res) => {
         month.totalData += electricityRecord.totalData;
       }
     });
-    twelveMonthsAgo.sort((a, b) => new Date(a._id) - new Date(b._id));
+
+    twelveMonthsAgo?.sort((a, b) => new Date(a._id) - new Date(b._id));
 
     const thismonthFood = await getThisMonthEachRecord(user_id, FoodRecord);
+
     const thismonthTransport = await getThisMonthEachRecord(
       user_id,
       TransportationRecord
@@ -80,25 +82,20 @@ const monthly = async (req, res) => {
       user_id,
       DailyTotalRecord
     );
-
     const thisMonthElectricity = await getThisMonthElectricity(
       user_id,
       ElectricityRecord
     );
+
     const result = [
-      { thismonthFood: thismonthFood },
-      {
-        thismonthTransport: thismonthTransport,
-      },
-      {
-        thismonthRecycle: thismonthRecycle,
-      },
-      {
-        thisMonthElectricity: thisMonthElectricity,
-      },
-      { thismonthTotal: thismonthTotal },
-      { twelveMonthsAgo: twelveMonthsAgo },
+      { thismonthFood },
+      { thismonthTransport },
+      { thismonthRecycle },
+      { thisMonthElectricity },
+      { thismonthTotal },
+      { twelveMonthsAgo },
     ];
+
     res.status(200).json(result);
   } catch (error) {
     res.status(500).json({ message: error.message });
