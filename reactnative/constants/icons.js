@@ -27,6 +27,9 @@ import pendingIcon from "../assets/icons/pendingIcon.png";
 import user from "../assets/icons/user.png";
 import trophy from "../assets/icons/trophy.png";
 import tree from "../assets/icons/tree.png";
+import carbon from "../assets/icons/carbon.png";
+import arrow from "../assets/icons/green_arrow.png"
+import earth from "../assets/icons/earth.png"
 
 export default {
   user,
@@ -58,4 +61,7 @@ export default {
   pendingIcon,
   trophy,
   tree,
+  carbon,
+  arrow,
+  earth
 };

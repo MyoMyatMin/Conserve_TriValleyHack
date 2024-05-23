@@ -1,13 +1,23 @@
-import { View, Text, ScrollView, StyleSheet } from "react-native";
+import { View, Text, ScrollView, StyleSheet, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
 import CircularProgressBar from "../components/circularProgressBar";
 import { icons } from "../../constants";
 import { LineChart } from "react-native-gifted-charts";
 import CircularProgressBarTotal from "./circularProgressBarTotal";
+import DataDetail from "./DataDetail";
 
 const DayDetails = ({ sevenDaysData }) => {
   const sevenDays = sevenDaysData[4]?.recordsWithinLastSevenDays;
   const data = sevenDays?.map((entry) => ({ value: entry.data }));
+  const [modalVisible, setModalVisible] = useState(false);
+
+  const toggleModal = () => {
+    setModalVisible(!modalVisible);
+  };
+
+  const closeModal = () => {
+    setModalVisible(false);
+  };
 
   const days = sevenDays?.map((entry) => {
     const dateObj = new Date(entry.createdAt);
@@ -19,11 +29,19 @@ const DayDetails = ({ sevenDaysData }) => {
   return (
     <ScrollView>
       <View className="flex justify-center items-center mt-4">
-        <CircularProgressBarTotal
+        <TouchableOpacity onPress={toggleModal}>
+          <CircularProgressBarTotal
           title={"Today Total"}
           percentage={sevenDaysData[3]?.todayTotal}
           max={2800}
           radius={130}
+        />
+        </TouchableOpacity>
+        <DataDetail 
+          modalVisible={modalVisible}
+          closeModal={closeModal}
+          amount={10000}
+          className='flex justify-center items-center mt-4'
         />
       </View>
       <View className="flex flex-row justify-around items-center my-6 ">

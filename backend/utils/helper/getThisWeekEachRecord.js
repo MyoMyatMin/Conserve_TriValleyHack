@@ -28,7 +28,7 @@ const getThisWeekEachRecord = async (user_id, Record) => {
     },
     {
       $group: {
-        _id: { $isoWeek: "$createdAt" }, // Group by ISO week
+        _id: { $isoWeek: "$localCreatedAt" }, // Group by ISO week
         totalData: { $sum: "$data" },
       },
     },
