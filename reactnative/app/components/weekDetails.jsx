@@ -49,22 +49,28 @@ const WeekDetails = ({ weeklyData }) => {
       </View>
       <View className="flex items-center justify-center p-6 mt-4 ml-10">
         <View>
-          <LineChart
-            data={data}
-            maxValue={20000}
-            noOfSections={4}
-            isAnimated={true}
-            color1="#26D6AF"
-            dataPointsColor1="#FFFFFF"
-            overflowTop={20}
-            xAxisColor="#FFFFFF"
-            yAxisColor={"#FFFFFF"}
-            xAxisLabelTexts={weeks}
-            xAxisLabelTextStyle={styles.xAxisLabel}
-            yAxisTextStyle={styles.xAxisLabel}
-            spacing={88}
-            maxValueLineColor="#FF0000"
-          />
+          {data && data.length > 0 ? (
+            <LineChart
+              data={data}
+              maxValue={20000}
+              noOfSections={4}
+              isAnimated={true}
+              color1="#26D6AF"
+              dataPointsColor1="#FFFFFF"
+              overflowTop={20}
+              xAxisColor="#FFFFFF"
+              yAxisColor={"#FFFFFF"}
+              xAxisLabelTexts={weeks}
+              xAxisLabelTextStyle={styles.xAxisLabel}
+              yAxisTextStyle={styles.xAxisLabel}
+              spacing={88}
+              maxValueLineColor="#FF0000"
+            />
+          ) : (
+            <View className="flex items-center justify-center">
+              <Text className="text-white text-lg">No data available</Text>
+            </View>
+          )}
         </View>
       </View>
     </ScrollView>
