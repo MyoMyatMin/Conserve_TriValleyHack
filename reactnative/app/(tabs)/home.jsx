@@ -11,6 +11,7 @@ import DayDetails from "../components/dayDetails";
 import WeekDetails from "../components/weekDetails";
 import MonthDetails from "../components/monthDetails";
 import HomeMenu from "../components/HomeMenu";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Home = () => {
   const [isDay, setIsDay] = useState(false);
@@ -25,8 +26,15 @@ const Home = () => {
   useEffect(() => {
     const fetchMonthlyData = async () => {
       const apiUrl = process.env.EXPO_PUBLIC_API_URL;
+      const token = await AsyncStorage.getItem("userData");
+      if (!token) throw new Error("No token found");
       try {
-        const res = await fetch(`${apiUrl}/api/getTotalRecord/monthly`);
+        const res = await fetch(`${apiUrl}/api/getTotalRecord/monthly`, {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        });
         const data = await res.json();
         setMonthlyData(data);
       } catch (error) {
@@ -40,8 +48,15 @@ const Home = () => {
   useEffect(() => {
     const fetchWeeklyData = async () => {
       const apiUrl = process.env.EXPO_PUBLIC_API_URL;
+      const token = await AsyncStorage.getItem("userData");
+      if (!token) throw new Error("No token found");
       try {
-        const res = await fetch(`${apiUrl}/api/getTotalRecord/weekly`);
+        const res = await fetch(`${apiUrl}/api/getTotalRecord/weekly`, {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        });
         const data = await res.json();
         setWeeklyData(data);
       } catch (error) {
@@ -55,8 +70,15 @@ const Home = () => {
   useEffect(() => {
     const fetchSevenDaysData = async () => {
       const apiUrl = process.env.EXPO_PUBLIC_API_URL;
+      const token = await AsyncStorage.getItem("userData");
+      if (!token) throw new Error("No token found");
       try {
-        const res = await fetch(`${apiUrl}/api/getTotalRecord/lastSevenDays`);
+        const res = await fetch(`${apiUrl}/api/getTotalRecord/lastSevenDays`, {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        });
         const data = await res.json();
 
         setSevenDaysData(data);
@@ -73,8 +95,18 @@ const Home = () => {
       setIsWeek(false);
       const fetchSevenDaysData = async () => {
         const apiUrl = process.env.EXPO_PUBLIC_API_URL;
+        const token = await AsyncStorage.getItem("userData");
+        if (!token) throw new Error("No token found");
         try {
-          const res = await fetch(`${apiUrl}/api/getTotalRecord/lastSevenDays`);
+          const res = await fetch(
+            `${apiUrl}/api/getTotalRecord/lastSevenDays`,
+            {
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+              },
+            }
+          );
           const data = await res.json();
 
           setSevenDaysData(data);

@@ -2,14 +2,24 @@ import User from "../models/userModel.js";
 import jwt from "jsonwebtoken";
 const protectRoute = async (req, res, next) => {
   try {
-    const token = req.cookies.jwt;
+    let token;
+    if (req.cookies.jwt) {
+      token = req.cookies.jwt;
+    } else {
+      const authHeader = req.headers.authorization;
+      if (!authHeader || !authHeader.startsWith("Bearer ")) {
+        return res.status(401).json({ message: "Unauthorized." });
+      }
+
+      token = authHeader.split(" ")[1];
+      token = token.replace(/^"|"$/g, "");
+    }
 
     if (!token) {
       return res.status(401).json({ message: "Unauthorized." });
     }
 
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-
     if (!decoded) {
       return res.status(401).json({ error: "Unauthorized - Invalid Token." });
     }
