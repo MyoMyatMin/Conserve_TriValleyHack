@@ -13,9 +13,9 @@ const AchievementBar = ({ title}) => {
             marginRight: 5,
           }}
         />
-        <Text className="text-xl text-secondary flex-1 text-center pr-11">
+        <Text className="text-xl text-purple font-bold flex-1 text-center pr-11">
           {title}
-         
+        
         </Text>
        
       </View>
