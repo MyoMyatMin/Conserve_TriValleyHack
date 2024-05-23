@@ -113,7 +113,7 @@ export default function AfternoonSurvey() {
 
 const styles = StyleSheet.create({
   container: {
-    paddingHorizontal: 50,
+    paddingHorizontal: 20,
     flex: 1,
     width: '450',
     height: '100%',

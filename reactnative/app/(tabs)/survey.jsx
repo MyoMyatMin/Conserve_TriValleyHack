@@ -95,7 +95,7 @@ const Survey = () => {
             {morning === 'ready' && <Image source={icons.readyIcon} />}
           </View>
         </TouchableOpacity>
-        <Modal visible={showSurvey} animationType='slide'>
+        <Modal visible={showSurvey} animationType='slide' transparent={true}>
           <View style={styles.modalContainer}>
             <MorningSurvey />
             <TouchableOpacity
