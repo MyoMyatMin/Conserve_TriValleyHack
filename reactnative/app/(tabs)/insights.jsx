@@ -32,14 +32,14 @@ const Insights = () => {
       </View>
       {triggerAnimation && (
         <TreeProgressBar
-          percentage={120}
-          radius={90}
+          percentage={110}
+          radius={175}
           imageSource={icons.profile}
         />
       )}
       <ScrollView>
         <Text className="text-2xl font-bold text-secondary text-center mt-4">
-          YOUR PROGESS TREE
+          
         </Text>
         <View className="flex flex-col py-4 px-6 space-y-[5px]">
           {achievements.map((achievement, index) => (
