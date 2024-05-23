@@ -1,4 +1,11 @@
-import { View, Text, TouchableOpacity, Image, Modal, Touchable } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  Image,
+  Modal,
+  Touchable,
+} from "react-native";
 import React, { useState, useEffect } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useGlobalContext } from "../../context/GlobalProvider";
@@ -6,12 +13,11 @@ import { router, useNavigation } from "expo-router";
 import CustomButton from "../components/CustomButton";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { icons, images } from "../../constants";
-import * as ImagePicker from 'expo-image-picker';
+import * as ImagePicker from "expo-image-picker";
 import ChoosePhotoModal from "../components/ChoosePhotoModal";
 import EditProfile from "../components/EditProfile";
 import CardProfile from "../components/CardProfile";
 import { LoadingModal } from "react-native-loading-modal";
-
 
 const profile = () => {
   const navigation = useNavigation();
@@ -20,16 +26,14 @@ const profile = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const [editModalVisible, setEditModalVisible] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
-  const [isLoading,setIsLoading] = useState(false)
-  
-  
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleChoosePhoto = () => {
-    setModalVisible(true)
-  }
+    setModalVisible(true);
+  };
   const handleCancel = () => {
-    setModalVisible(false)
-  }
+    setModalVisible(false);
+  };
   const pickImageAsync = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
       allowsEditing: true,
@@ -37,13 +41,13 @@ const profile = () => {
     });
 
     if (!result.canceled) {
-      const uri = result.assets[0].uri
-      const selectedUri = await convertToBase64(uri)
-      setModalVisible(false)
-      setEditModalVisible(true)
+      const uri = result.assets[0].uri;
+      const selectedUri = await convertToBase64(uri);
+      setModalVisible(false);
+      setEditModalVisible(true);
       setSelectedImage(selectedUri);
     } else {
-      alert('You did not select any image.');
+      alert("You did not select any image.");
     }
   };
   const convertToBase64 = async (uri) => {
@@ -64,7 +68,7 @@ const profile = () => {
     }
   };
   const takeImageAsync = async () => {
-    await ImagePicker.requestCameraPermissionsAsync()
+    await ImagePicker.requestCameraPermissionsAsync();
     let result = await ImagePicker.launchCameraAsync({
       cameraType: ImagePicker.CameraType.front,
       allowsEditing: true,
@@ -72,27 +76,34 @@ const profile = () => {
     });
 
     if (!result.canceled) {
-      const uri = result.assets[0].uri
-      const selectedUri = await convertToBase64(uri)
-      setModalVisible(false)
-      setEditModalVisible(true)
+      const uri = result.assets[0].uri;
+      const selectedUri = await convertToBase64(uri);
+      setModalVisible(false);
+      setEditModalVisible(true);
       setSelectedImage(selectedUri);
     } else {
-      alert('You did not select any image.');
+      alert("You did not select any image.");
     }
   };
 
   const fetchData = async () => {
     const apiUrl = process.env.EXPO_PUBLIC_API_URL;
+    const token = await AsyncStorage.getItem("userData");
+    if (!token) throw new Error("No token found");
     try {
-      const res = await fetch(`${apiUrl}/api/getProfileInfos`);
+      const res = await fetch(`${apiUrl}/api/getProfileInfos`, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
       const data = await res.json();
       setRecord(data);
     } catch (error) {
       Alert("Error", error);
     }
   };
- 
+
   useEffect(() => {
     fetchData();
   }, []);
@@ -106,7 +117,7 @@ const profile = () => {
       const res = await fetch(`${apiUrl}/api/users/update/${userId}`, {
         method: "PUT",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(updatedData),
       });
@@ -136,15 +147,16 @@ const profile = () => {
             <TouchableOpacity
               onPress={() => navigation.navigate("(tabs)", { screen: "home" })}
             >
-              <Image 
-              source={icons.crossX}
-              style={{
-                width: 40,
-                height: 40,
-                resizeMode: 'contain',
-                marginRight: 50,
-                marginTop: 5
-              }} />
+              <Image
+                source={icons.crossX}
+                style={{
+                  width: 40,
+                  height: 40,
+                  resizeMode: "contain",
+                  marginRight: 50,
+                  marginTop: 5,
+                }}
+              />
             </TouchableOpacity>
           </View>
         </View>
@@ -157,11 +169,21 @@ const profile = () => {
 
       <View className="flex h-5/6 justify-between p-3">
         <CardProfile handleChoosePhoto={handleChoosePhoto} records={records} />
-        <ChoosePhotoModal handleCancel = {handleCancel} pickImageAsync = {pickImageAsync} takeImageAsync={takeImageAsync} modalVisible ={modalVisible} />
-        <EditProfile pickImageAsync={pickImageAsync} selectedImage={selectedImage} handleSaveUpdate={handleSaveUpdate} editModalVisible={editModalVisible} records={records}  />
+        <ChoosePhotoModal
+          handleCancel={handleCancel}
+          pickImageAsync={pickImageAsync}
+          takeImageAsync={takeImageAsync}
+          modalVisible={modalVisible}
+        />
+        <EditProfile
+          pickImageAsync={pickImageAsync}
+          selectedImage={selectedImage}
+          handleSaveUpdate={handleSaveUpdate}
+          editModalVisible={editModalVisible}
+          records={records}
+        />
         <LoadingModal modalVisible={isLoading} />
         <View>
-          
           <CustomButton
             title={"Logout"}
             handlePress={logout}
