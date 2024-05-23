@@ -8,18 +8,18 @@ import CircularProgressBarTotal from "./circularProgressBarTotal";
 const WeekDetails = ({ weeklyData }) => {
   const [maxValue, setMaxValue] = useState(560);
 
-  let weekly = weeklyData[4].fourWeeksAgo;
+  let weekly = weeklyData[4]?.fourWeeksAgo;
 
-  const data = weekly.map((item) => ({ value: item.totalData }));
+  const data = weekly?.map((item) => ({ value: item.totalData }));
 
-  const weeks = weekly.map((item) => `Week ${item._id.isoWeek}`);
+  const weeks = weekly?.map((item) => `Week ${item._id.isoWeek}`);
 
   return (
     <ScrollView>
       <View className="flex justify-center items-center mt-4">
         <CircularProgressBarTotal
           title={"This week total"}
-          percentage={weeklyData[3].thisWeekTotal}
+          percentage={weeklyData[3]?.thisWeekTotal}
           max={25000}
           radius={130}
         />
@@ -27,21 +27,21 @@ const WeekDetails = ({ weeklyData }) => {
       <View className="flex flex-row justify-around items-center my-6 ">
         <CircularProgressBar
           title={"Consumption"}
-          percentage={weeklyData[0].thisWeekFood}
+          percentage={weeklyData[0]?.thisWeekFood}
           max={10000}
           radius={32}
           imageSource={icons.Hamburger}
         />
         <CircularProgressBar
           title={"Transportation"}
-          percentage={weeklyData[1].thisWeekTransport}
+          percentage={weeklyData[1]?.thisWeekTransport}
           max={10000}
           radius={32}
           imageSource={icons.bus}
         />
         <CircularProgressBar
           title={"Plastic Usage"}
-          percentage={weeklyData[2].thisWeekRecycle}
+          percentage={weeklyData[2]?.thisWeekRecycle}
           max={10000}
           radius={32}
           imageSource={icons.trash}
