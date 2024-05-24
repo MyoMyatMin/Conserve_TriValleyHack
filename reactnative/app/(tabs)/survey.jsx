@@ -13,9 +13,10 @@ import { useState } from 'react'
 import { icons, images } from '../../constants'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { useGlobalContext } from '../../context/GlobalProvider'
-import MorningSurvey from '../components/MorningSurvey'
-import AfternoonSurvey from '../components/AfternoonSurvey'
-import NightSurvey from '../components/NightSurvey'
+// import MorningSurvey from '../components/TransportationSurvey'
+// import AfternoonSurvey from '../components/AfternoonSurvey'
+// import NightSurvey from '../components/NightSurvey'
+import { router } from 'expo-router'
 
 const getButtonColor = (surveyState) => {
   switch (surveyState) {
@@ -37,13 +38,13 @@ const Survey = () => {
   const handleSurveyPress = (survey) => {
     // console.log(morning)
     if (survey === 'morning' && morning === 'ready') {
-      setShowSurvey(true)
+      router.push('/morning')
     } else if (
       survey === 'afternoon' &&
       morning === 'completed' &&
       afternoon === 'ready'
     ) {
-      setShowAfternoon(true)
+      router.push('/afternoon')
     } else if (
       survey === 'afternoon' &&
       morning !== 'completed' &&
@@ -56,18 +57,18 @@ const Survey = () => {
       afternoon === 'completed' &&
       night === 'ready'
     ) {
-      setShowNight(true)
+      router.push('/night')
     } else if (
       survey === 'night' &&
       (morning !== 'completed' || afternoon !== 'completed') &&
       night === 'ready'
     ) {
       Alert.alert('Need to finish Both Mornign and Afternoon Surveys first!')
-    } else if (survey == 'night' && night === 'completed') {
+    } else if (survey == 'morning' && morning === 'completed') {
       Alert.alert('Morning Survey Already Taken!')
     } else if (survey == 'afternoon' && afternoon === 'completed') {
       Alert.alert('Afternoon Survey Already Taken!')
-    } else if (survey == 'morning' && morning === 'completed') {
+    } else if (survey == 'night' && night === 'completed') {
       Alert.alert('Night Survey Already Taken!')
     } else if (morning === 'pending' && survey == 'morning') {
       Alert.alert('Can not take Morning Survey yet')
@@ -95,7 +96,7 @@ const Survey = () => {
             {morning === 'ready' && <Image source={icons.readyIcon} />}
           </View>
         </TouchableOpacity>
-        <Modal visible={showSurvey} animationType='slide' transparent={true}>
+        {/* <Modal visible={showSurvey} animationType='slide' transparent={true}>
           <View style={styles.modalContainer}>
             <MorningSurvey />
             <TouchableOpacity
@@ -105,7 +106,7 @@ const Survey = () => {
               <Text style={styles.closeButtonText}>X</Text>
             </TouchableOpacity>
           </View>
-        </Modal>
+        </Modal> */}
         <TouchableOpacity
           style={[styles.button, { backgroundColor: '#615B7F' }]}
           onPress={() => handleSurveyPress('afternoon')}
@@ -120,7 +121,7 @@ const Survey = () => {
             {afternoon === 'ready' && <Image source={icons.readyIcon} />}
           </View>
         </TouchableOpacity>
-        <Modal visible={showAfternoon} animationType='slide' transparent={true}>
+        {/* <Modal visible={showAfternoon} animationType='slide' transparent={true}>
           <View style={styles.modalContainer}>
             <AfternoonSurvey />
             <TouchableOpacity
@@ -130,7 +131,7 @@ const Survey = () => {
               <Text style={styles.closeButtonText}>X</Text>
             </TouchableOpacity>
           </View>
-        </Modal>
+        </Modal> */}
         <TouchableOpacity
           style={[styles.button, { backgroundColor: '#271D3B' }]}
           onPress={() => handleSurveyPress('night')}
@@ -144,7 +145,7 @@ const Survey = () => {
           </View>
         </TouchableOpacity>
       </View>
-      <Modal visible={showNight} animationType='slide' transparent={true}>
+      {/* <Modal visible={showNight} animationType='slide' transparent={true}>
         <View style={styles.modalContainer}>
           <NightSurvey />
           <TouchableOpacity
@@ -154,7 +155,7 @@ const Survey = () => {
             <Text style={styles.closeButtonText}>X</Text>
           </TouchableOpacity>
         </View>
-      </Modal>
+      </Modal> */}
     </SafeAreaView>
   )
 }

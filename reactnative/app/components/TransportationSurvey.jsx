@@ -25,7 +25,7 @@ const calculateCarbonFootprint = (answers) => {
   return totalCarbonFootprint
 }
 
-export default function MorningSurvey() {
+export default function TransportationSurvey({ question }) {
   const [currentQuestion, setCurrentQuestion] = useState(1)
   const [answers, setAnswers] = useState([])
   const [showResult, setShowResult] = useState(false)
@@ -68,6 +68,7 @@ export default function MorningSurvey() {
       setShowResult(true)
 
       let myobj = await loadInitialStates()
+
       // Show the result
       myobj.objmorning = 'completed'
       setMorning(myobj.objmorning)
