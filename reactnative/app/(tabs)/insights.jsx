@@ -32,8 +32,8 @@ const Insights = () => {
       </View>
       {triggerAnimation && (
         <TreeProgressBar
-          percentage={110}
-          radius={175}
+          percentage={80}
+          radius={150}
           imageSource={icons.profile}
         />
       )}
