@@ -1,10 +1,11 @@
-import { View, Text, ScrollView, StyleSheet } from "react-native";
+import { View, Text, ScrollView, StyleSheet, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
 import CircularProgressBar from "../components/circularProgressBar";
 import { icons } from "../../constants";
 import ProgressBar from "../components/ProgressBar";
 import { LineChart } from "react-native-gifted-charts";
 import CircularProgressBarTotal from "./circularProgressBarTotal";
+import DataDetail from "./DataDetail";
 
 const MonthDetails = ({ monthlyData }) => {
   let monthly = monthlyData[5]?.twelveMonthsAgo;
@@ -12,65 +13,131 @@ const MonthDetails = ({ monthlyData }) => {
   let data = [];
 
   const labels = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "June",
-    "July",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec",
+    "Jan", "Feb", "Mar", "Apr", "May", "June",
+    "July", "Aug", "Sep", "Oct", "Nov", "Dec",
   ];
+
   monthly?.forEach((item) => {
     const monthIndex = parseInt(item._id.split("-")[1], 10) - 1;
-
     const monthName = labels[monthIndex];
-
     months.push(monthName);
-
     data.push({ value: item.totalData });
   });
+
+  const [modalVisible, setModalVisible] = useState(false);
+  const [selectedType, setSelectedType] = useState(null);
+
+  const toggleModal = (type) => {
+    setSelectedType(type);
+    setModalVisible(true);
+  };
+
+  const closeModal = () => {
+    setModalVisible(false);
+    setSelectedType(null);
+  };
 
   return (
     <ScrollView>
       <View className="flex justify-center items-center mt-4">
-        <CircularProgressBarTotal
-          title={"This month total"}
-          percentage={monthlyData[4]?.thismonthTotal}
-          max={100000}
-          radius={130}
-        />
+        <TouchableOpacity onPress={() => toggleModal('Total')}>
+          <CircularProgressBarTotal
+            title={"This month total"}
+            percentage={monthlyData[4]?.thismonthTotal}
+            max={100000}
+            radius={130}
+          />
+        </TouchableOpacity>
+        {modalVisible && selectedType === 'Total' && (
+          <DataDetail
+            modalVisible={modalVisible}
+            closeModal={closeModal}
+            amount={100000}
+            time={'Monthly'}
+            type={'Total'}
+            maxAvg={100000}
+            className='flex justify-center items-center mt-4'
+          />
+        )}
       </View>
       <View className="flex flex-row justify-around items-center my-6 ">
-        <CircularProgressBar
-          title={"Consumption"}
-          percentage={monthlyData[0]?.thismonthFood}
-          max={33333}
-          radius={32}
-          imageSource={icons.Hamburger}
-        />
-        <CircularProgressBar
-          title={"Transportation"}
-          percentage={monthlyData[1]?.thismonthTransport}
-          max={33333}
-          radius={32}
-          imageSource={icons.bus}
-        />
-        <CircularProgressBar
-          title={"Plastic Usage"}
-          percentage={monthlyData[2]?.thismonthRecycle}
-          max={33333}
-          radius={32}
-          imageSource={icons.trash}
-        />
+        <TouchableOpacity onPress={() => toggleModal('Consumption')}>
+          <CircularProgressBar
+            title={"Consumption"}
+            percentage={monthlyData[0]?.thismonthFood}
+            max={33333}
+            radius={32}
+            imageSource={icons.Hamburger}
+          />
+        </TouchableOpacity>
+        {modalVisible && selectedType === 'Consumption' && (
+          <DataDetail
+            modalVisible={modalVisible}
+            closeModal={closeModal}
+            amount={100000}
+            time={'Monthly'}
+            type={'Consumption'}
+            maxAvg={100000}
+            className='flex justify-center items-center mt-4'
+          />
+        )}
+        <TouchableOpacity onPress={() => toggleModal('Transportation')}>
+          <CircularProgressBar
+            title={"Transportation"}
+            percentage={monthlyData[1]?.thismonthTransport}
+            max={33333}
+            radius={32}
+            imageSource={icons.bus}
+          />
+        </TouchableOpacity>
+        {modalVisible && selectedType === 'Transportation' && (
+          <DataDetail
+            modalVisible={modalVisible}
+            closeModal={closeModal}
+            amount={100000}
+            time={'Monthly'}
+            type={'Transportation'}
+            maxAvg={100000}
+            className='flex justify-center items-center mt-4'
+          />
+        )}
+        <TouchableOpacity onPress={() => toggleModal('PlasticUsage')}>
+          <CircularProgressBar
+            title={"Plastic Usage"}
+            percentage={monthlyData[2]?.thismonthRecycle}
+            max={33333}
+            radius={32}
+            imageSource={icons.trash}
+          />
+        </TouchableOpacity>
+        {modalVisible && selectedType === 'PlasticUsage' && (
+          <DataDetail
+            modalVisible={modalVisible}
+            closeModal={closeModal}
+            amount={100000}
+            time={'Monthly'}
+            type={'PlasticUsage'}
+            maxAvg={100000}
+            className='flex justify-center items-center mt-4'
+          />
+        )}
       </View>
-      <ProgressBar
-        thisMonthElectricity={monthlyData[3]?.thisMonthElectricity || 0}
-      />
+      <TouchableOpacity onPress={() => toggleModal('Electricity')}>
+        <ProgressBar
+          thisMonthElectricity={monthlyData[3]?.thisMonthElectricity || 0}
+        />
+      </TouchableOpacity>
+      {modalVisible && selectedType === 'Electricity' && (
+        <DataDetail
+          modalVisible={modalVisible}
+          closeModal={closeModal}
+          amount={100000}
+          time={'Monthly'}
+          type={'Electricity'}
+          maxAvg={100000}
+          className='flex justify-center items-center mt-4'
+        />
+      )}
       <View className="flex items-center justify-center p-6 mt-6">
         <View className="mr-6">
           {monthly && monthly.length > 0 ? (
@@ -93,8 +160,8 @@ const MonthDetails = ({ monthlyData }) => {
             />
           ) : (
             <View className="flex items-center justify-center p-8 ml-6 bg-purple rounded-lg">
-              <Text className="text-white font-psemibold text-center  text-base">
-                Do not have enough data to show summerize chart.
+              <Text className="text-white font-psemibold text-center text-base">
+                Do not have enough data to show summarized chart.
               </Text>
             </View>
           )}
@@ -103,6 +170,7 @@ const MonthDetails = ({ monthlyData }) => {
     </ScrollView>
   );
 };
+
 const styles = StyleSheet.create({
   xAxisLabel: {
     color: "#FFFFFF",

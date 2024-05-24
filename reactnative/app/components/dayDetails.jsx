@@ -10,13 +10,16 @@ const DayDetails = ({ sevenDaysData }) => {
   const sevenDays = sevenDaysData[4]?.recordsWithinLastSevenDays;
   const data = sevenDays?.map((entry) => ({ value: entry.data }));
   const [modalVisible, setModalVisible] = useState(false);
+  const [selectedType, setSelectedType] = useState(null);
 
-  const toggleModal = () => {
-    setModalVisible(!modalVisible);
+  const toggleModal = (type) => {
+    setSelectedType(type);
+    setModalVisible(true);
   };
 
   const closeModal = () => {
     setModalVisible(false);
+    setSelectedType(null);
   };
 
   const days = sevenDays?.map((entry) => {
@@ -29,43 +32,87 @@ const DayDetails = ({ sevenDaysData }) => {
   return (
     <ScrollView>
       <View className="flex justify-center items-center mt-4">
-        <TouchableOpacity onPress={toggleModal}>
+        <TouchableOpacity onPress={() => toggleModal('Total')}>
           <CircularProgressBarTotal
-          title={"Today Total"}
-          percentage={sevenDaysData[3]?.todayTotal}
-          max={2800}
-          radius={130}
-        />
+            title={"Today Total"}
+            percentage={sevenDaysData[3]?.todayTotal}
+            max={2800}
+            radius={130}
+          />
         </TouchableOpacity>
-        <DataDetail 
-          modalVisible={modalVisible}
-          closeModal={closeModal}
-          amount={10000}
-          className='flex justify-center items-center mt-4'
-        />
+        {modalVisible && selectedType === 'Total' && (
+          <DataDetail
+            modalVisible={modalVisible}
+            closeModal={closeModal}
+            amount={100}
+            time={'Daily'}
+            type={'Total'}
+            maxAvg={500}
+            className='flex justify-center items-center mt-4'
+          />
+        )}
       </View>
-      <View className="flex flex-row justify-around items-center my-6 ">
-        <CircularProgressBar
-          title={"Consumption"}
-          percentage={sevenDaysData[0]?.todayFood}
-          max={1000}
-          radius={32}
-          imageSource={icons.Hamburger}
-        />
-        <CircularProgressBar
-          title={"Transportation"}
-          percentage={sevenDaysData[1]?.todayTransport}
-          max={1000}
-          radius={32}
-          imageSource={icons.bus}
-        />
-        <CircularProgressBar
-          title={"Plastic Usage"}
-          percentage={sevenDaysData[2]?.todayRecycle}
-          max={1000}
-          radius={32}
-          imageSource={icons.trash}
-        />
+      <View className="flex flex-row justify-around items-center my-6">
+        <TouchableOpacity onPress={() => toggleModal('Consumption')}>
+          <CircularProgressBar
+            title={"Consumption"}
+            percentage={sevenDaysData[0]?.todayFood}
+            max={1000}
+            radius={32}
+            imageSource={icons.Hamburger}
+          />
+        </TouchableOpacity>
+        {modalVisible && selectedType === 'Consumption' && (
+          <DataDetail
+            modalVisible={modalVisible}
+            closeModal={closeModal}
+            amount={10000}
+            time={'Daily'}
+            type={'Consumption'}
+            maxAvg={10000}
+            className='flex justify-center items-center mt-4'
+          />
+        )}
+        <TouchableOpacity onPress={() => toggleModal('Transportation')}>
+          <CircularProgressBar
+            title={"Transportation"}
+            percentage={sevenDaysData[1]?.todayTransport}
+            max={1000}
+            radius={32}
+            imageSource={icons.bus}
+          />
+        </TouchableOpacity>
+        {modalVisible && selectedType === 'Transportation' && (
+          <DataDetail
+            modalVisible={modalVisible}
+            closeModal={closeModal}
+            amount={10000}
+            time={'Daily'}
+            type={'Transportation'}
+            maxAvg={10000}
+            className='flex justify-center items-center mt-4'
+          />
+        )}
+        <TouchableOpacity onPress={() => toggleModal('PlasticUsage')}>
+          <CircularProgressBar
+            title={"Plastic Usage"}
+            percentage={sevenDaysData[2]?.todayRecycle}
+            max={1000}
+            radius={32}
+            imageSource={icons.trash}
+          />
+        </TouchableOpacity>
+        {modalVisible && selectedType === 'PlasticUsage' && (
+          <DataDetail
+            modalVisible={modalVisible}
+            closeModal={closeModal}
+            amount={10000}
+            time={'Daily'}
+            type={'PlasticUsage'}
+            maxAvg={10000}
+            className='flex justify-center items-center mt-4'
+          />
+        )}
       </View>
       <View className="flex items-center justify-center p-6 mt-6 ">
         <View className="mr-6">
