@@ -2,7 +2,6 @@ import getISOWeeks from "./getISOWeeks.js";
 
 const getThisWeekEachRecord = async (user_id, Record) => {
   let { startOfCurrentWeek, endOfCurrentWeek } = getISOWeeks();
-
   // Convert dates to local time zone
 
   const result = await Record.aggregate([
@@ -28,7 +27,7 @@ const getThisWeekEachRecord = async (user_id, Record) => {
     },
     {
       $group: {
-        _id: { $isoWeek: "$createdAt" }, // Group by ISO week
+        _id: { $isoWeek: "$localCreatedAt" }, // Group by ISO week
         totalData: { $sum: "$data" },
       },
     },

@@ -13,12 +13,16 @@ import getISOWeeks from "../utils/helper/getISOWeeks.js";
 const monthly = async (req, res) => {
   try {
     const user_id = req.user._id;
+    const date = new Date();
+    date.setMonth(date.getMonth() - 11);
+    date.setDate(1);
+    const elevenMonthsAgo = new Date(date);
     const twelveMonthsAgo = await DailyTotalRecord.aggregate([
       {
         $match: {
           user_id: user_id,
           createdAt: {
-            $gte: new Date(new Date().setMonth(new Date().getMonth() - 11)), // 12 months ago
+            $gte: elevenMonthsAgo, // 12 months ago
             $lte: new Date(), // Current date
           },
         },
