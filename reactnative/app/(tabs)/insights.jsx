@@ -31,8 +31,7 @@ const Insights = () => {
   }, []);
 
   const achievements = data.achievements || [];
-  console.log(achievements);
-
+  const conserveAmount = data.conserveAmount || 0;
   return (
     <SafeAreaView className="flex-1 bg-blue">
       <ScrollView>
@@ -43,7 +42,8 @@ const Insights = () => {
         </View>
         {triggerAnimation && (
           <TreeProgressBar
-            percentage={110}
+            percentage={conserveAmount % 700}
+            noOfTree={Math.floor(conserveAmount / 700)}
             radius={175}
             imageSource={icons.profile}
           />
@@ -61,9 +61,6 @@ const Insights = () => {
       </ScrollView>
     </SafeAreaView>
   );
-};
-const Achievement = ({ title }) => {
-  return <AchievementBar title={title} />;
 };
 
 export default Insights;

@@ -49,17 +49,19 @@ const DayDetails = ({ sevenDaysData }) => {
           imageSource={icons.trash}
         />
       </View>
-      <View className="flex items-center justify-center p-6 mt-4 mr-1">
-        <View>
+      <View className="flex items-center justify-center p-6 mt-6 ">
+        <View className="mr-6">
           {data && data.length > 0 ? (
             <LineChart
               data={data}
+              width={300}
+              height={240}
               maxValue={2800}
               noOfSections={4}
               isAnimated={true}
               color1="#26D6AF"
               dataPointsColor1="#FFFFFF"
-              overflowTop={20}
+              overflowTop={200}
               xAxisColor="#FFFFFF"
               yAxisColor={"#FFFFFF"}
               xAxisLabelTexts={days}
@@ -69,8 +71,10 @@ const DayDetails = ({ sevenDaysData }) => {
               maxValueLineColor="#FF0000"
             />
           ) : (
-            <View className="flex items-center justify-center">
-              <Text className="text-white text-lg">No data available</Text>
+            <View className="flex items-center justify-center p-8 ml-6 bg-purple rounded-lg">
+              <Text className="text-white font-psemibold text-center  text-base">
+                Do not have enough data to show summerize chart.
+              </Text>
             </View>
           )}
         </View>
