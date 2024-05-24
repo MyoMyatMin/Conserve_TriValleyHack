@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import AsyncStorage from '@react-native-async-storage/async-storage'
+import React, { useState } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import {
   View,
   Text,
@@ -8,27 +8,27 @@ import {
   ImageBackground,
   StyleSheet,
   TouchableOpacity,
-} from 'react-native'
-import { images } from '../../constants'
-import { questions } from '../../assets/questions/questions'
-import { useGlobalContext } from '../../context/GlobalProvider'
+} from "react-native";
+import { images } from "../../constants";
+import { questions } from "../../assets/questions/questions";
+import { useGlobalContext } from "../../context/GlobalProvider";
 
 const calculateCarbonFootprint = (answers) => {
-  let totalCarbonFootprint = 0
+  let totalCarbonFootprint = 0;
 
   answers.forEach((answer) => {
     if (answer.carbon_footprint) {
-      totalCarbonFootprint += answer.carbon_footprint
+      totalCarbonFootprint += answer.carbon_footprint;
     }
-  })
+  });
 
-  return totalCarbonFootprint
-}
+  return totalCarbonFootprint;
+};
 
 export default function MorningSurvey() {
-  const [currentQuestion, setCurrentQuestion] = useState(1)
-  const [answers, setAnswers] = useState([])
-  const [showResult, setShowResult] = useState(false)
+  const [currentQuestion, setCurrentQuestion] = useState(1);
+  const [answers, setAnswers] = useState([]);
+  const [showResult, setShowResult] = useState(false);
   const {
     morning,
     afternoon,
@@ -38,59 +38,62 @@ export default function MorningSurvey() {
     setNight,
     saveStates,
     loadStates,
-  } = useGlobalContext()
+  } = useGlobalContext();
 
   const loadInitialStates = async () => {
-    const initialStates = await loadStates()
-    return initialStates
+    const initialStates = await loadStates();
+    return initialStates;
     // console.log(states)
-  }
+  };
 
   const handleAnswer = async (answerId) => {
-    const currentQuestionObj = questions.find((q) => q.id === currentQuestion)
+    const currentQuestionObj = questions.find((q) => q.id === currentQuestion);
     const selectedOption = currentQuestionObj.options.find(
       (o) => o.id === answerId
-    )
+    );
 
     const updatedAnswer = {
       ...selectedOption,
       carbon_footprint: selectedOption.carbon_footprint || 0,
-    }
+    };
 
-    setAnswers([...answers, updatedAnswer])
+    setAnswers([...answers, updatedAnswer]);
 
     if (selectedOption.next_question && selectedOption.next_question !== 0) {
-      setCurrentQuestion(selectedOption.next_question)
+      setCurrentQuestion(selectedOption.next_question);
     } else if (selectedOption.next_question == 0) {
-      const totalCarbonFootprint = calculateCarbonFootprint(answers)
-      console.log(`Total carbon footprint: ${totalCarbonFootprint}`)
-      setCurrentQuestion(null) // Stop showing questions
-      setShowResult(true)
+      const totalCarbonFootprint = calculateCarbonFootprint(answers);
+      console.log(`Total carbon footprint: ${totalCarbonFootprint}`);
+      setCurrentQuestion(null); // Stop showing questions
+      setShowResult(true);
 
-      let myobj = await loadInitialStates()
+      let myobj = await loadInitialStates();
       // Show the result
-      myobj.objmorning = 'completed'
-      setMorning(myobj.objmorning)
+      myobj.objmorning = "completed";
+      setMorning(myobj.objmorning);
       // console.log(myobj)
-      await saveStates(myobj)
+      await saveStates(myobj);
 
       try {
-        const apiUrl = process.env.EXPO_PUBLIC_API_URL
+        const apiUrl = process.env.EXPO_PUBLIC_API_URL;
 
         const res = await fetch(`${apiUrl}/api/transportation/morning/create`, {
-          method: 'POST',
+          method: "POST",
           headers: {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
           },
-          body: JSON.stringify({ total: totalCarbonFootprint }),
-        })
+          body: JSON.stringify({ data: totalCarbonFootprint }),
+        });
+
+        const data = await res.json();
+        console.log(data);
       } catch (error) {
-        console.log(error.message)
+        console.log(error.message);
       }
     } else {
-      console.log('quit without finishing')
+      console.log("quit without finishing");
     }
-  }
+  };
 
   return (
     <ImageBackground source={images.morningBg}>
@@ -110,9 +113,9 @@ export default function MorningSurvey() {
                   </TouchableOpacity>
                 ))}
               </View>
-            )
+            );
           }
-          return null
+          return null;
         })}
         {showResult && (
           <Text style={styles.question}>
@@ -121,7 +124,7 @@ export default function MorningSurvey() {
         )}
       </View>
     </ImageBackground>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
@@ -129,31 +132,31 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     flex: 1,
     width: 450,
-    height: '100%',
-    alignItems: 'center',
-    justifyContent: 'center',
+    height: "100%",
+    alignItems: "center",
+    justifyContent: "center",
   },
   question: {
-    color: 'white',
+    color: "white",
     width: 350,
     padding: 40,
     paddingVertical: 50,
-    textAlign: 'center',
+    textAlign: "center",
     marginBottom: 20,
     fontSize: 20,
-    backgroundColor: 'white',
+    backgroundColor: "white",
     borderRadius: 20,
-    color: 'black',
+    color: "black",
   },
   button: {
-    backgroundColor: '#26D6AF',
+    backgroundColor: "#26D6AF",
     paddingVertical: 10,
     borderRadius: 20,
     marginBottom: 20,
-    alignItems: 'center',
+    alignItems: "center",
   },
   buttonText: {
-    color: '#fff',
+    color: "#fff",
     fontSize: 18,
   },
   image: {
@@ -161,4 +164,4 @@ const styles = StyleSheet.create({
     height: 50,
     marginBottom: 30,
   },
-})
+});

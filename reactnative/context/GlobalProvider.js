@@ -12,6 +12,7 @@ const saveStates = async (states) => {
 const loadStates = async () => {
   try {
     const statesJson = await AsyncStorage.getItem("states");
+
     if (statesJson) {
       return JSON.parse(statesJson);
     } else {
@@ -105,6 +106,7 @@ const GlobalProvider = ({ children }) => {
         newMorning = "ready";
       } else if (myobj.objmorning == "completed") {
         newMorning = "completed";
+        //newMorning = "ready";
       } else {
         newMorning = "pending";
       }
