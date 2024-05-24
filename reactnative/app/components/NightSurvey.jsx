@@ -115,14 +115,15 @@ const styles = StyleSheet.create({
   container: {
     paddingHorizontal: 20,
     flex: 1,
-    width: '100%',
+    width: 450,
     height: '100%',
     alignItems: 'center',
     justifyContent: 'center',
   },
   question: {
     color: 'white',
-    padding: 40,
+    width: 350,
+    paddingHorizontal: 40,
     paddingVertical: 50,
     textAlign: 'center',
     marginBottom: 20,
@@ -141,10 +142,5 @@ const styles = StyleSheet.create({
   buttonText: {
     color: '#fff',
     fontSize: 18,
-  },
-  image: {
-    width: 50,
-    height: 50,
-    marginBottom: 30,
   },
 })

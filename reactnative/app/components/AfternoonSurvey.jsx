@@ -115,13 +115,14 @@ const styles = StyleSheet.create({
   container: {
     paddingHorizontal: 20,
     flex: 1,
-    width: '100%',
+    width: '450',
     height: '100%',
     alignItems: 'center',
     justifyContent: 'center',
   },
   question: {
     color: 'white',
+    width: 350,
     padding: 40,
     paddingVertical: 50,
     textAlign: 'center',

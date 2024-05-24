@@ -73,6 +73,20 @@ export default function MorningSurvey() {
       setMorning(myobj.objmorning)
       // console.log(myobj)
       await saveStates(myobj)
+
+      try {
+        const apiUrl = process.env.EXPO_PUBLIC_API_URL
+
+        const res = await fetch(`${apiUrl}/api/transportation/morning/create`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ total: totalCarbonFootprint }),
+        })
+      } catch (error) {
+        console.log(error.message)
+      }
     } else {
       console.log('quit without finishing')
     }
@@ -114,13 +128,14 @@ const styles = StyleSheet.create({
   container: {
     paddingHorizontal: 20,
     flex: 1,
-    width: '100%',
+    width: 450,
     height: '100%',
     alignItems: 'center',
     justifyContent: 'center',
   },
   question: {
     color: 'white',
+    width: 350,
     padding: 40,
     paddingVertical: 50,
     textAlign: 'center',
