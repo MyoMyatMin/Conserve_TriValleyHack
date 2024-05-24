@@ -6,10 +6,11 @@ import {
   Modal,
   TouchableOpacity,
   StyleSheet,
+  ImageBackground,
 } from 'react-native'
 import React from 'react'
 import { useState } from 'react'
-import { icons } from '../../constants'
+import { icons, images } from '../../constants'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { useGlobalContext } from '../../context/GlobalProvider'
 import MorningSurvey from '../components/MorningSurvey'
@@ -94,7 +95,7 @@ const Survey = () => {
             {morning === 'ready' && <Image source={icons.readyIcon} />}
           </View>
         </TouchableOpacity>
-        <Modal visible={showSurvey} animationType='slide'>
+        <Modal visible={showSurvey} animationType='slide' transparent={true}>
           <View style={styles.modalContainer}>
             <MorningSurvey />
             <TouchableOpacity
@@ -119,7 +120,7 @@ const Survey = () => {
             {afternoon === 'ready' && <Image source={icons.readyIcon} />}
           </View>
         </TouchableOpacity>
-        <Modal visible={showAfternoon} animationType='slide'>
+        <Modal visible={showAfternoon} animationType='slide' transparent={true}>
           <View style={styles.modalContainer}>
             <AfternoonSurvey />
             <TouchableOpacity
@@ -142,18 +143,18 @@ const Survey = () => {
             {night === 'ready' && <Image source={icons.readyIcon} />}
           </View>
         </TouchableOpacity>
-        <Modal visible={showNight} animationType='slide'>
-          <View style={styles.modalContainer}>
-            <NightSurvey />
-            <TouchableOpacity
-              style={styles.closeButton}
-              onPress={() => setShowNight(false)}
-            >
-              <Text style={styles.closeButtonText}>X</Text>
-            </TouchableOpacity>
-          </View>
-        </Modal>
       </View>
+      <Modal visible={showNight} animationType='slide' transparent={true}>
+        <View style={styles.modalContainer}>
+          <NightSurvey />
+          <TouchableOpacity
+            style={styles.closeButton}
+            onPress={() => setShowNight(false)}
+          >
+            <Text style={styles.closeButtonText}>X</Text>
+          </TouchableOpacity>
+        </View>
+      </Modal>
     </SafeAreaView>
   )
 }
@@ -191,9 +192,10 @@ const styles = StyleSheet.create({
   },
   modalContainer: {
     flex: 1,
+    width: '100%',
+    height: '100%',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'black',
     position: 'relative',
   },
   closeButton: {
