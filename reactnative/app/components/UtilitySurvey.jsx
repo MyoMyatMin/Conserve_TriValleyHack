@@ -9,32 +9,26 @@ import {
   StyleSheet,
   TouchableOpacity,
 } from 'react-native'
-
 import { images } from '../../constants'
-import { questions } from '../../assets/questions/questions'
+import { utilityquestions } from '../../assets/questions/utilityquestions'
 import { useGlobalContext } from '../../context/GlobalProvider'
 
-const calculateTransportationCarbonFootprint = (answers) => {
+const calculateUtilityCarbonFootprint = (answers) => {
   let totalCarbonFootprint = 0
-  // console.log(answers)
 
-  for (let i = 0; i < answers.length; i++) {
-    totalCarbonFootprint += answers[i].carbon_footprint
-  }
-  // answers.forEach((answer) => {
-  //   if (answer.carbon_footprint) {
-  //     totalCarbonFootprint += answer.carbon_footprint
-  //   }
-  // })
+  answers.forEach((answer) => {
+    if (answer.carbon_footprint) {
+      totalCarbonFootprint += answer.carbon_footprint
+    }
+  })
 
   return totalCarbonFootprint
 }
 
-export default function TransportationSurvey({ surveyName, surveyTime }) {
+export default function UtilitySurvey({ surveyName, surveyTime }) {
   const [currentQuestion, setCurrentQuestion] = useState(1)
   const [answers, setAnswers] = useState([])
   const [showResult, setShowResult] = useState(false)
-  const [total, setTotal] = useState(0)
 
   const {
     morning,
@@ -91,7 +85,9 @@ export default function TransportationSurvey({ surveyName, surveyTime }) {
   }
 
   const handleAnswer = async (answerId) => {
-    const currentQuestionObj = questions.find((q) => q.id === currentQuestion)
+    const currentQuestionObj = utilityquestions.find(
+      (q) => q.id === currentQuestion
+    )
     const selectedOption = currentQuestionObj.options.find(
       (o) => o.id === answerId
     )
@@ -100,7 +96,6 @@ export default function TransportationSurvey({ surveyName, surveyTime }) {
       ...selectedOption,
       carbon_footprint: selectedOption.carbon_footprint || 0,
     }
-    // console.log(updatedAnswer)
 
     setAnswers([...answers, updatedAnswer])
 
@@ -108,12 +103,11 @@ export default function TransportationSurvey({ surveyName, surveyTime }) {
       setCurrentQuestion(selectedOption.next_question)
     } else if (selectedOption.next_question == 0) {
       const totalCarbonFootprint =
-        calculateTransportationCarbonFootprint(answers) *
-        updatedAnswer.carbon_footprint
+        calculateUtilityCarbonFootprint(answers) +
+        selectedOption.carbon_footprint
       console.log(`Total carbon footprint: ${totalCarbonFootprint}`)
       setCurrentQuestion(null) // Stop showing questions
       setShowResult(true)
-      setTotal(totalCarbonFootprint)
 
       let myobj = await loadInitialStates()
       let morningSurveyStates = await loadInitialMorningSurveyStates()
@@ -155,6 +149,7 @@ export default function TransportationSurvey({ surveyName, surveyTime }) {
         await saveNightSurveyStates(nightSurveyStates)
       } else if (surveyName === 'nightUtility') {
         nightSurveyStates.objutility = 'completed'
+
         setNightUtility('completed')
         await saveNightSurveyStates(nightSurveyStates)
       }
@@ -226,7 +221,7 @@ export default function TransportationSurvey({ surveyName, surveyTime }) {
   return (
     <ImageBackground source={chooseBackground(surveyTime)}>
       <View style={styles.container}>
-        {questions.map((questionObj) => {
+        {utilityquestions.map((questionObj) => {
           if (questionObj.id === currentQuestion) {
             return (
               <View key={questionObj.id}>
@@ -246,7 +241,9 @@ export default function TransportationSurvey({ surveyName, surveyTime }) {
           return null
         })}
         {showResult && (
-          <Text style={styles.question}>Total carbon footprint: {total}</Text>
+          <Text style={styles.question}>
+            Total carbon footprint: {calculateUtilityCarbonFootprint(answers)}
+          </Text>
         )}
       </View>
     </ImageBackground>
