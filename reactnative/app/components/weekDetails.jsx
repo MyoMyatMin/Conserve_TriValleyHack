@@ -47,11 +47,13 @@ const WeekDetails = ({ weeklyData }) => {
           imageSource={icons.trash}
         />
       </View>
-      <View className="flex items-center justify-center p-6 mt-4 ml-10">
-        <View>
+      <View className="flex items-center justify-center p-6 mt-6">
+        <View className="mr-6">
           {data && data.length > 0 ? (
             <LineChart
               data={data}
+              width={300}
+              height={240}
               maxValue={20000}
               noOfSections={4}
               isAnimated={true}
@@ -67,8 +69,10 @@ const WeekDetails = ({ weeklyData }) => {
               maxValueLineColor="#FF0000"
             />
           ) : (
-            <View className="flex items-center justify-center">
-              <Text className="text-white text-lg">No data available</Text>
+            <View className="flex items-center justify-center p-8 ml-6 bg-purple rounded-lg">
+              <Text className="text-white font-psemibold text-center  text-base">
+                Do not have enough data to show summerize chart.
+              </Text>
             </View>
           )}
         </View>
