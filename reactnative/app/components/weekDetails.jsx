@@ -26,6 +26,9 @@ const WeekDetails = ({ weeklyData }) => {
     setSelectedType(null);
   };
 
+  const handlePress = (type) =>{
+    toggleModal(type);
+  }
   return (
     <ScrollView>
       <View className="flex justify-center items-center mt-4">
@@ -41,7 +44,7 @@ const WeekDetails = ({ weeklyData }) => {
           <DataDetail
             modalVisible={modalVisible}
             closeModal={closeModal}
-            amount={100}
+            amount={weeklyData[3]?.thisWeekTotal}
             time={'Weekly'}
             type={'Total'}
             maxAvg={500}
@@ -63,7 +66,7 @@ const WeekDetails = ({ weeklyData }) => {
           <DataDetail
             modalVisible={modalVisible}
             closeModal={closeModal}
-            amount={100}
+            amount={weeklyData[0]?.thisWeekFood}
             time={'Weekly'}
             type={'Consumption'}
             maxAvg={500}
@@ -83,7 +86,7 @@ const WeekDetails = ({ weeklyData }) => {
           <DataDetail
             modalVisible={modalVisible}
             closeModal={closeModal}
-            amount={100}
+            amount={weeklyData[1]?.thisWeekTransport}
             time={'Weekly'}
             type={'Transportation'}
             maxAvg={500}
@@ -103,7 +106,7 @@ const WeekDetails = ({ weeklyData }) => {
           <DataDetail
             modalVisible={modalVisible}
             closeModal={closeModal}
-            amount={100}
+            amount={weeklyData[2]?.thisWeekRecycle}
             time={'Weekly'}
             type={'PlasticUsage'}
             maxAvg={500}

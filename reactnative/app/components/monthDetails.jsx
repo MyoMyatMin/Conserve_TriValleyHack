@@ -52,7 +52,7 @@ const MonthDetails = ({ monthlyData }) => {
           <DataDetail
             modalVisible={modalVisible}
             closeModal={closeModal}
-            amount={100000}
+            amount={monthlyData[4]?.thismonthTotal}
             time={'Monthly'}
             type={'Total'}
             maxAvg={100000}
@@ -74,7 +74,7 @@ const MonthDetails = ({ monthlyData }) => {
           <DataDetail
             modalVisible={modalVisible}
             closeModal={closeModal}
-            amount={100000}
+            amount={monthlyData[0]?.thismonthFood}
             time={'Monthly'}
             type={'Consumption'}
             maxAvg={100000}
@@ -94,7 +94,7 @@ const MonthDetails = ({ monthlyData }) => {
           <DataDetail
             modalVisible={modalVisible}
             closeModal={closeModal}
-            amount={100000}
+            amount={monthlyData[1]?.thismonthTransport}
             time={'Monthly'}
             type={'Transportation'}
             maxAvg={100000}
@@ -114,7 +114,7 @@ const MonthDetails = ({ monthlyData }) => {
           <DataDetail
             modalVisible={modalVisible}
             closeModal={closeModal}
-            amount={100000}
+            amount={monthlyData[2]?.thismonthRecycle}
             time={'Monthly'}
             type={'PlasticUsage'}
             maxAvg={100000}
@@ -131,7 +131,7 @@ const MonthDetails = ({ monthlyData }) => {
         <DataDetail
           modalVisible={modalVisible}
           closeModal={closeModal}
-          amount={100000}
+          amount={monthlyData[3]?.thisMonthElectricity}
           time={'Monthly'}
           type={'Electricity'}
           maxAvg={100000}

@@ -33,7 +33,7 @@ const DataDetail = ({ amount, time, maxAvg, type, modalVisible, closeModal }) =>
                 </TouchableWithoutFeedback>
               </View>
               <View className='  px-3'>
-                <Text className='text-purple text-center pt-5'>Your Current emission amount: {amount}</Text> 
+                <Text className='text-purple text-center pt-5'>Your Current emission amount: {amount}kgs</Text> 
                
                 <Text className='text-purple font-semibold text-center pt-5 '>
                   Tip: It is recommented to keep your {time}  {type} emission amount under {maxAvg} kgs to CONSERVE!

@@ -9,6 +9,7 @@ import DataDetail from "./DataDetail";
 const DayDetails = ({ sevenDaysData }) => {
   const sevenDays = sevenDaysData[4]?.recordsWithinLastSevenDays;
   const data = sevenDays?.map((entry) => ({ value: entry.data }));
+
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedType, setSelectedType] = useState(null);
 
@@ -31,7 +32,7 @@ const DayDetails = ({ sevenDaysData }) => {
 
   return (
     <ScrollView>
-      <View className="flex justify-center items-center mt-4">
+      <View className="flex justify-center items-center mt-4">       
         <TouchableOpacity onPress={() => toggleModal('Total')}>
           <CircularProgressBarTotal
             title={"Today Total"}
@@ -39,20 +40,20 @@ const DayDetails = ({ sevenDaysData }) => {
             max={2800}
             radius={130}
           />
-        </TouchableOpacity>
+        </TouchableOpacity>         
         {modalVisible && selectedType === 'Total' && (
           <DataDetail
             modalVisible={modalVisible}
             closeModal={closeModal}
-            amount={100}
+            amount={sevenDaysData[3]?.todayTotal}
             time={'Daily'}
             type={'Total'}
             maxAvg={500}
             className='flex justify-center items-center mt-4'
           />
-        )}
+        )}       
       </View>
-      <View className="flex flex-row justify-around items-center my-6">
+      <View className="flex flex-row justify-around items-center my-6 ">       
         <TouchableOpacity onPress={() => toggleModal('Consumption')}>
           <CircularProgressBar
             title={"Consumption"}
@@ -66,10 +67,10 @@ const DayDetails = ({ sevenDaysData }) => {
           <DataDetail
             modalVisible={modalVisible}
             closeModal={closeModal}
-            amount={10000}
+            amount={sevenDaysData[0]?.todayFood}
             time={'Daily'}
             type={'Consumption'}
-            maxAvg={10000}
+            maxAvg={500}
             className='flex justify-center items-center mt-4'
           />
         )}
@@ -80,16 +81,16 @@ const DayDetails = ({ sevenDaysData }) => {
             max={1000}
             radius={32}
             imageSource={icons.bus}
-          />
+        />
         </TouchableOpacity>
         {modalVisible && selectedType === 'Transportation' && (
           <DataDetail
             modalVisible={modalVisible}
             closeModal={closeModal}
-            amount={10000}
+            amount={sevenDaysData[1]?.todayTransport}
             time={'Daily'}
             type={'Transportation'}
-            maxAvg={10000}
+            maxAvg={500}
             className='flex justify-center items-center mt-4'
           />
         )}
@@ -100,19 +101,20 @@ const DayDetails = ({ sevenDaysData }) => {
             max={1000}
             radius={32}
             imageSource={icons.trash}
-          />
+        />
         </TouchableOpacity>
         {modalVisible && selectedType === 'PlasticUsage' && (
           <DataDetail
             modalVisible={modalVisible}
             closeModal={closeModal}
-            amount={10000}
+            amount={sevenDaysData[2]?.todayRecycle}
             time={'Daily'}
             type={'PlasticUsage'}
-            maxAvg={10000}
+            maxAvg={500}
             className='flex justify-center items-center mt-4'
           />
-        )}
+        )}                        
+        
       </View>
       <View className="flex items-center justify-center p-6 mt-6 ">
         <View className="mr-6">
