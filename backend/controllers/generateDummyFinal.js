@@ -18,10 +18,10 @@ import {
 } from "../utils/helper/checkAchievements.js";
 
 const generateDummyFinal = async () => {
-  const startDate = new Date(2024, 3, 23); // May is month 4 (zero-based indexing)
-  const endDate = new Date(2024, 4, 22); // May is month 4 (zero-based indexing)
-  // const user_id = "664216f602e3f37efbfc5023";
-  const user_id = "664d9ad72037ed7c1238c526";
+  const startDate = new Date(2023, 4, 27); // May is month 4 (zero-based indexing)
+  const endDate = new Date(2024, 4, 25); // May is month 4 (zero-based indexing)
+  const user_id = "664216f602e3f37efbfc5023";
+  //const user_id = "664d9ad72037ed7c1238c526";
   for (
     let date = new Date(startDate);
     date <= endDate;
@@ -29,11 +29,11 @@ const generateDummyFinal = async () => {
   ) {
     const formattedDate = date.toISOString();
 
-    const rData = faker.number.int({ min: 100, max: 1500 });
-    const tData = faker.number.int({ min: 100, max: 1500 });
-    const fData = faker.number.int({ min: 100, max: 1500 });
+    const rData = faker.number.float({ min: 0, max: 0.07, fractionDigits: 2 });
+    const tData = faker.number.float({ min: 0, max: 7, fractionDigits: 2 });
+    const fData = faker.number.float({ min: 0, max: 5, fractionDigits: 2 });
 
-    const is_c = rData + tData + fData < 2800;
+    const is_c = rData + tData + fData < 8.55;
 
     const newF = new FoodRecord({
       user_id: user_id,
@@ -148,11 +148,19 @@ const generateDummyFinal = async () => {
       }
 
       if (is_c) {
+        const user = await User.findOne({ _id: user_id });
+        const existingConserveAmount = user.conserveAmount || 0; // Default to 0 if conserveAmount doesn't exist
+
+        const newConserveAmount =
+          8.55 - (rData + tData + fData) + existingConserveAmount;
+        console.log(newConserveAmount);
+
         await User.updateOne(
           { _id: user_id },
-          { $set: { conserveAmount: 2800 - (rData + tData + fData) } }
+          { $set: { conserveAmount: newConserveAmount } }
         );
       }
+
       console.log(`Data for ${formattedDate} saved successfully.`);
     } catch (error) {
       console.error(`Error saving data for ${formattedDate}: ${error}`);

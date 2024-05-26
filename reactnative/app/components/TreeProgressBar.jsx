@@ -14,7 +14,7 @@ const TreeProgressBar = ({
   color = "#EBFF00",
   backColor = "#271D3B",
   delay = 2,
-  max = 700,
+  max = 70,
   imageSource,
 }) => {
   const [treeCount, setTreeCount] = useState(0);

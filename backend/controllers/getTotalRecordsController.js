@@ -60,7 +60,7 @@ const monthly = async (req, res) => {
         },
       },
     ]);
-
+    //console.log(twelveMonthsAgo);
     twelveMonthsAgo?.forEach((month) => {
       const electricityRecord = electricityData.find(
         (record) => record._id === month._id
@@ -71,7 +71,7 @@ const monthly = async (req, res) => {
     });
 
     twelveMonthsAgo?.sort((a, b) => new Date(a._id) - new Date(b._id));
-
+    //console.log(twelveMonthsAgo);
     const thismonthFood = await getThisMonthEachRecord(user_id, FoodRecord);
 
     const thismonthTransport = await getThisMonthEachRecord(
@@ -216,7 +216,7 @@ const lastSevenDays = async (req, res) => {
       { todayTransport: todayTransport },
       { todayRecycle: todayRecycle },
       { todayTotal: todayTotal },
-      { recordsWithinLastSevenDays: recordsWithLocalTime },
+      { recordsWithinLastSevenDays: recordsWithinLastSevenDays },
     ];
     res.status(200).json(result);
   } catch (error) {

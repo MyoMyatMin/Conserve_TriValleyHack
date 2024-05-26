@@ -13,6 +13,7 @@ const DayDetails = ({ sevenDaysData }) => {
     const dateObj = new Date(entry.createdAt);
     const month = (dateObj.getMonth() + 1).toString().padStart(2, "0");
     const day = dateObj.getDate().toString().padStart(2, "0");
+
     return `${month}/${day}`;
   });
 
@@ -22,7 +23,7 @@ const DayDetails = ({ sevenDaysData }) => {
         <CircularProgressBarTotal
           title={"Today Total"}
           percentage={sevenDaysData[3]?.todayTotal}
-          max={2800}
+          max={8.55}
           radius={130}
         />
       </View>
@@ -30,21 +31,21 @@ const DayDetails = ({ sevenDaysData }) => {
         <CircularProgressBar
           title={"Consumption"}
           percentage={sevenDaysData[0]?.todayFood}
-          max={1000}
+          max={3.5}
           radius={32}
           imageSource={icons.Hamburger}
         />
         <CircularProgressBar
           title={"Transportation"}
           percentage={sevenDaysData[1]?.todayTransport}
-          max={1000}
+          max={5}
           radius={32}
           imageSource={icons.bus}
         />
         <CircularProgressBar
           title={"Plastic Usage"}
           percentage={sevenDaysData[2]?.todayRecycle}
-          max={1000}
+          max={0.05}
           radius={32}
           imageSource={icons.trash}
         />
@@ -56,7 +57,7 @@ const DayDetails = ({ sevenDaysData }) => {
               data={data}
               width={300}
               height={240}
-              maxValue={2800}
+              maxValue={10}
               noOfSections={4}
               isAnimated={true}
               color1="#26D6AF"
