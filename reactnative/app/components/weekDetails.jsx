@@ -20,7 +20,7 @@ const WeekDetails = ({ weeklyData }) => {
         <CircularProgressBarTotal
           title={"This week total"}
           percentage={weeklyData[3]?.thisWeekTotal}
-          max={25000}
+          max={59.85}
           radius={130}
         />
       </View>
@@ -28,21 +28,21 @@ const WeekDetails = ({ weeklyData }) => {
         <CircularProgressBar
           title={"Consumption"}
           percentage={weeklyData[0]?.thisWeekFood}
-          max={10000}
+          max={24.5}
           radius={32}
           imageSource={icons.Hamburger}
         />
         <CircularProgressBar
           title={"Transportation"}
           percentage={weeklyData[1]?.thisWeekTransport}
-          max={10000}
+          max={35}
           radius={32}
           imageSource={icons.bus}
         />
         <CircularProgressBar
           title={"Plastic Usage"}
           percentage={weeklyData[2]?.thisWeekRecycle}
-          max={10000}
+          max={0.35}
           radius={32}
           imageSource={icons.trash}
         />
@@ -54,7 +54,7 @@ const WeekDetails = ({ weeklyData }) => {
               data={data}
               width={300}
               height={240}
-              maxValue={20000}
+              maxValue={70}
               noOfSections={4}
               isAnimated={true}
               color1="#26D6AF"

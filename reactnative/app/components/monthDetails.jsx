@@ -41,7 +41,7 @@ const MonthDetails = ({ monthlyData }) => {
         <CircularProgressBarTotal
           title={"This month total"}
           percentage={monthlyData[4]?.thismonthTotal}
-          max={100000}
+          max={256.5}
           radius={130}
         />
       </View>
@@ -49,21 +49,21 @@ const MonthDetails = ({ monthlyData }) => {
         <CircularProgressBar
           title={"Consumption"}
           percentage={monthlyData[0]?.thismonthFood}
-          max={33333}
+          max={105}
           radius={32}
           imageSource={icons.Hamburger}
         />
         <CircularProgressBar
           title={"Transportation"}
           percentage={monthlyData[1]?.thismonthTransport}
-          max={33333}
+          max={150}
           radius={32}
           imageSource={icons.bus}
         />
         <CircularProgressBar
           title={"Plastic Usage"}
           percentage={monthlyData[2]?.thismonthRecycle}
-          max={33333}
+          max={1.5}
           radius={32}
           imageSource={icons.trash}
         />
@@ -78,7 +78,7 @@ const MonthDetails = ({ monthlyData }) => {
               data={data}
               width={300}
               height={240}
-              maxValue={100000}
+              maxValue={440}
               noOfSections={4}
               isAnimated={true}
               color1="#26D6AF"
