@@ -16,7 +16,6 @@ import { useGlobalContext } from '../../context/GlobalProvider'
 
 const calculateFoodCarbonFootprint = (answers) => {
   let totalCarbonFootprint = 0
-
   answers.forEach((answer) => {
     if (answer.carbon_footprint) {
       totalCarbonFootprint += answer.carbon_footprint

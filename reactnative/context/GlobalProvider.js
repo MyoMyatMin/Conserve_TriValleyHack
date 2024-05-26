@@ -219,6 +219,8 @@ const GlobalProvider = ({ children }) => {
         await AsyncStorage.setItem('previousDate', currentDate.toISOString())
         await saveStates(myobj)
         await saveMorningSurveyStates(morningSurveyStates)
+        await saveAfternoonSurveyStates(afternoonSurveyStates)
+        await saveNightSurveyStates(nightSurveyStates)
       }
       let myobj = await loadInitialStates()
       let morningSurveyStates = await loadInitialMorningSurveyStates()

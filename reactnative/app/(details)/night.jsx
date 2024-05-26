@@ -63,7 +63,7 @@ const night = () => {
           style={[styles.button, { backgroundColor: 'red' }]}
           onPress={() => handlePress('transportation')}
         >
-          <ImageBackground source={images.nightBg}>
+          <ImageBackground source={images.transportationBg}>
             <View style={styles.buttonView}>
               {/* <Image source={icons.morningIcon} /> */}
               <Text style={styles.buttonText}>Transportation</Text>
@@ -81,7 +81,7 @@ const night = () => {
           style={[styles.button, { backgroundColor: 'red' }]}
           onPress={() => handlePress('food')}
         >
-          <ImageBackground source={images.nightBg}>
+          <ImageBackground source={images.foodBg}>
             <View style={styles.buttonView}>
               {/* <Image source={icons.morningIcon} /> */}
               <Text style={styles.buttonText}>Food</Text>
@@ -97,7 +97,7 @@ const night = () => {
           style={[styles.button, { backgroundColor: 'red' }]}
           onPress={() => handlePress('utility')}
         >
-          <ImageBackground source={images.nightBg}>
+          <ImageBackground source={images.utilityBg}>
             <View style={styles.buttonView}>
               {/* <Image source={icons.morningIcon} /> */}
               <Text style={styles.buttonText}>Recycling</Text>

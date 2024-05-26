@@ -123,7 +123,7 @@ export default function TransportationSurvey({ surveyName, surveyTime }) {
       if (surveyName === 'morningTransportation') {
         morningSurveyStates.objtransportation = 'completed'
         setMorningTransportation('completed')
-        console.log(morningTransportation)
+
         await saveMorningSurveyStates(morningSurveyStates)
       } else if (surveyName === 'morningFood') {
         morningSurveyStates.objfood = 'completed'
