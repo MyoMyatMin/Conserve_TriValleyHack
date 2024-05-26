@@ -8,6 +8,9 @@ import empty from '../assets/images/empty.png'
 import morningBg from '../assets/images/morningBg.jpg'
 import afternoonBg from '../assets/images/afternoonBg.jpg'
 import nightBg from '../assets/images/nightBg.jpg'
+import transportationBg from '../assets/images/transportationBg.jpg'
+import foodBg from '../assets/images/foodBg.jpg'
+import utilityBg from '../assets/images/utilityBg.jpg'
 
 export default {
   profile,
@@ -20,4 +23,7 @@ export default {
   morningBg,
   afternoonBg,
   nightBg,
+  transportationBg,
+  foodBg,
+  utilityBg,
 }

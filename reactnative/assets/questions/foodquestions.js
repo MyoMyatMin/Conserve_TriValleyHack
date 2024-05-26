@@ -11,6 +11,7 @@ export const foodquestions = [
       {
         id: 2,
         text: 'No',
+        carbon_footprint: 0,
         next_question: 0,
       },
     ],

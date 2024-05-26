@@ -33,6 +33,12 @@ export const utilityquestions = [
         carbon_footprint: 0.7,
         next_question: 0,
       },
+      {
+        id: 5,
+        text: 'Did not buy any bottle/can',
+        carbon_footprint: 0,
+        next_question: 0,
+      },
     ],
   },
 
