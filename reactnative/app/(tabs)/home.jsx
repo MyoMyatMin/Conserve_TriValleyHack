@@ -10,7 +10,7 @@ import {
 import { router } from 'expo-router'
 import React, { useEffect, useState, useCallback } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import { icons } from '../../constants'
+import { icons, images } from '../../constants'
 import {
   useNavigation,
   useFocusEffect,
@@ -187,15 +187,23 @@ const Home = () => {
       {isWeek && <WeekDetails weeklyData={weeklyData} />}
       {isMonth && <MonthDetails monthlyData={monthlyData} />}
       <Modal visible={showModal} animationType='slide' transparent={true}>
-        <View style={styles.modalContainer}>
+        <View style={styles.modalContainer} className='bg-purple-950'>
+          <Image
+            className='w-20 h-20'
+            source={images.modalImg}
+            resizeMode='contain'
+          />
           <View className='mb-10'>
             <Text className='px-2 text-white text-2xl font-bold text-center'>
-              Have you taking your daily survey?
+              Hi there! Will you take your daily survey now?
             </Text>
           </View>
           <TouchableOpacity
             style={styles.closeButton}
-            onPress={() => setShowModal(false)}
+            onPress={() => {
+              setShowModal(false)
+              router.push('survey')
+            }}
           >
             <Text style={styles.closeButtonText}>Yes</Text>
           </TouchableOpacity>
@@ -203,7 +211,6 @@ const Home = () => {
             style={styles.closeButtonNo}
             onPress={() => {
               setShowModal(false)
-              router.push('survey')
             }}
           >
             <Text style={styles.closeButtonText}>No</Text>
@@ -236,7 +243,7 @@ const styles = StyleSheet.create({
   modalContainer: {
     width: 300,
     height: 300,
-    backgroundColor: '#26D6AF',
+
     justifyContent: 'center',
     alignItems: 'center',
     position: 'absolute',

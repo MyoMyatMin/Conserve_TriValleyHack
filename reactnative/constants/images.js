@@ -11,6 +11,7 @@ import nightBg from '../assets/images/nightBg.jpg'
 import transportationBg from '../assets/images/transportationBg.jpg'
 import foodBg from '../assets/images/foodBg.jpg'
 import utilityBg from '../assets/images/utilityBg.jpg'
+import modalImg from '../assets/images/modalImg.png'
 
 export default {
   profile,
@@ -26,4 +27,5 @@ export default {
   transportationBg,
   foodBg,
   utilityBg,
+  modalImg,
 }
