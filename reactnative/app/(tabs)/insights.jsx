@@ -12,7 +12,8 @@ const Insights = () => {
   useEffect(() => {
     setTriggerAnimation(true);
     const fetchAchievements = async () => {
-      const apiUrl = process.env.EXPO_PUBLIC_API_URL;
+      // const apiUrl = process.env.EXPO_PUBLIC_API_URL;
+      const apiUrl = "https://conserve-trivalleyhack.onrender.com";
       try {
         const token = await AsyncStorage.getItem("userData");
         const res = await fetch(`${apiUrl}/api/getProfileInfos/achievements`, {
