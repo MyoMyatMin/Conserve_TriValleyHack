@@ -129,7 +129,7 @@ const DayDetails = ({ sevenDaysData }) => {
               data={data}
               width={300}
               height={240}
-              maxValue={10}
+              maxValue={20}
               noOfSections={4}
               isAnimated={true}
               color1="#26D6AF"
