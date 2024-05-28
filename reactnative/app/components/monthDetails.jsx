@@ -1,4 +1,11 @@
-import { View, Text, ScrollView, StyleSheet, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  ScrollView,
+  StyleSheet,
+  TouchableOpacity,
+  Button,
+} from "react-native";
 import React, { useState } from "react";
 import CircularProgressBar from "../components/circularProgressBar";
 import { icons } from "../../constants";
@@ -6,6 +13,7 @@ import ProgressBar from "../components/ProgressBar";
 import { LineChart } from "react-native-gifted-charts";
 import CircularProgressBarTotal from "./circularProgressBarTotal";
 import DataDetail from "./DataDetail";
+import ElectricityModal from "./ElectricityModal";
 
 const MonthDetails = ({ monthlyData }) => {
   let monthly = monthlyData[5]?.twelveMonthsAgo;
@@ -13,9 +21,24 @@ const MonthDetails = ({ monthlyData }) => {
   let data = [];
 
   const labels = [
-    "Jan", "Feb", "Mar", "Apr", "May", "June",
-    "July", "Aug", "Sep", "Oct", "Nov", "Dec",
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "June",
+    "July",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
   ];
+  const [electricityShowModal, setElectricityShowModal] = useState(false);
+
+  const toggleElectricityModal = () => {
+    setElectricityShowModal(true);
+  };
 
   monthly?.forEach((item) => {
     const monthIndex = parseInt(item._id.split("-")[1], 10) - 1;
@@ -40,7 +63,11 @@ const MonthDetails = ({ monthlyData }) => {
   return (
     <ScrollView>
       <View className="flex justify-center items-center mt-4">
-        <TouchableOpacity onPress={() => toggleModal('Total')}>
+        <ElectricityModal
+          electricityShowModal={electricityShowModal}
+          setElectricityShowModal={setElectricityShowModal}
+        />
+        <TouchableOpacity onPress={() => toggleModal("Total")}>
           <CircularProgressBarTotal
             title={"This month total"}
             percentage={monthlyData[4]?.thismonthTotal}
@@ -48,20 +75,20 @@ const MonthDetails = ({ monthlyData }) => {
             radius={130}
           />
         </TouchableOpacity>
-        {modalVisible && selectedType === 'Total' && (
+        {modalVisible && selectedType === "Total" && (
           <DataDetail
             modalVisible={modalVisible}
             closeModal={closeModal}
             amount={monthlyData[4]?.thismonthTotal}
-            time={'Monthly'}
-            type={'Total'}
+            time={"Monthly"}
+            type={"Total"}
             maxAvg={256.5}
-            className='flex justify-center items-center mt-4'
+            className="flex justify-center items-center mt-4"
           />
         )}
       </View>
       <View className="flex flex-row justify-around items-center my-6 ">
-        <TouchableOpacity onPress={() => toggleModal('Consumption')}>
+        <TouchableOpacity onPress={() => toggleModal("Consumption")}>
           <CircularProgressBar
             title={"Consumption"}
             percentage={monthlyData[0]?.thismonthFood}
@@ -70,18 +97,18 @@ const MonthDetails = ({ monthlyData }) => {
             imageSource={icons.Hamburger}
           />
         </TouchableOpacity>
-        {modalVisible && selectedType === 'Consumption' && (
+        {modalVisible && selectedType === "Consumption" && (
           <DataDetail
             modalVisible={modalVisible}
             closeModal={closeModal}
             amount={monthlyData[0]?.thismonthFood}
-            time={'Monthly'}
-            type={'Consumption'}
+            time={"Monthly"}
+            type={"Consumption"}
             maxAvg={105}
-            className='flex justify-center items-center mt-4'
+            className="flex justify-center items-center mt-4"
           />
         )}
-        <TouchableOpacity onPress={() => toggleModal('Transportation')}>
+        <TouchableOpacity onPress={() => toggleModal("Transportation")}>
           <CircularProgressBar
             title={"Transportation"}
             percentage={monthlyData[1]?.thismonthTransport}
@@ -90,18 +117,18 @@ const MonthDetails = ({ monthlyData }) => {
             imageSource={icons.bus}
           />
         </TouchableOpacity>
-        {modalVisible && selectedType === 'Transportation' && (
+        {modalVisible && selectedType === "Transportation" && (
           <DataDetail
             modalVisible={modalVisible}
             closeModal={closeModal}
             amount={monthlyData[1]?.thismonthTransport}
-            time={'Monthly'}
-            type={'Transportation'}
+            time={"Monthly"}
+            type={"Transportation"}
             maxAvg={150}
-            className='flex justify-center items-center mt-4'
+            className="flex justify-center items-center mt-4"
           />
         )}
-        <TouchableOpacity onPress={() => toggleModal('PlasticUsage')}>
+        <TouchableOpacity onPress={() => toggleModal("PlasticUsage")}>
           <CircularProgressBar
             title={"Plastic Usage"}
             percentage={monthlyData[2]?.thismonthRecycle}
@@ -110,35 +137,46 @@ const MonthDetails = ({ monthlyData }) => {
             imageSource={icons.trash}
           />
         </TouchableOpacity>
-        {modalVisible && selectedType === 'PlasticUsage' && (
+        {modalVisible && selectedType === "PlasticUsage" && (
           <DataDetail
             modalVisible={modalVisible}
             closeModal={closeModal}
             amount={monthlyData[2]?.thismonthRecycle}
-            time={'Monthly'}
-            type={'PlasticUsage'}
+            time={"Monthly"}
+            type={"PlasticUsage"}
             maxAvg={1.5}
-            className='flex justify-center items-center mt-4'
+            className="flex justify-center items-center mt-4"
           />
         )}
       </View>
-      <TouchableOpacity onPress={() => toggleModal('Electricity')}>
-        <ProgressBar
-          thisMonthElectricity={monthlyData[3]?.thisMonthElectricity || 0}
-        />
-      </TouchableOpacity>
-      {modalVisible && selectedType === 'Electricity' && (
+      <View className="flex flex-row items-center justify-center">
+        <TouchableOpacity
+          className="w-4/5"
+          onPress={() => toggleModal("Electricity")}
+        >
+          <ProgressBar
+            thisMonthElectricity={monthlyData[3]?.thisMonthElectricity || 0}
+          />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={toggleElectricityModal}>
+          <View className="bg-green p-2 rounded">
+            <Text>Add</Text>
+          </View>
+        </TouchableOpacity>
+      </View>
+
+      {modalVisible && selectedType === "Electricity" && (
         <DataDetail
           modalVisible={modalVisible}
           closeModal={closeModal}
           amount={monthlyData[3]?.thisMonthElectricity}
-          time={'Monthly'}
-          type={'Electricity'}
+          time={"Monthly"}
+          type={"Electricity"}
           maxAvg={100000}
-          className='flex justify-center items-center mt-4'
+          className="flex justify-center items-center mt-4"
         />
       )}
-      <View className="flex items-center justify-center p-6 mt-6">
+      <View className="flex items-center justify-center p-6 mt-10">
         <View className="mr-6">
           {monthly && monthly.length > 0 ? (
             <LineChart
@@ -150,7 +188,7 @@ const MonthDetails = ({ monthlyData }) => {
               isAnimated={true}
               color1="#26D6AF"
               dataPointsColor1="#FFFFFF"
-              overflowTop={200}
+              overflowTop={80}
               xAxisColor="#FFFFFF"
               yAxisColor={"#FFFFFF"}
               xAxisLabelTexts={months}
