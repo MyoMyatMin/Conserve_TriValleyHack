@@ -64,6 +64,7 @@ const TreeProgressBar = ({
         width={radius * 2}
         height={radius * 2}
         viewBox={`0 0 ${halfCircle * 2} ${halfCircle * 2}`}
+        className="mb-4"
       >
         <G rotation="-90" origin={`${halfCircle}, ${halfCircle}`}>
           <Circle
@@ -100,8 +101,8 @@ const TreeProgressBar = ({
         </G>
       </Svg>
 
-      <View className="bg-green-300 rounded-3xl min-h-10 flex-row items-center py-3 px-4 my-1">
-        <Text className="text-lg text-white">You saved: {noOfTree}</Text>
+      <View className="mt-10 bg-green-600 rounded-3xl min-h-10 flex-row items-center py-3 px-4 my-1">
+        <Text className="text-lg text-slate-700">You saved: {noOfTree}</Text>
         <Image
           source={icons.tree}
           className="w-5 h-5 ml-2"

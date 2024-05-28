@@ -289,14 +289,20 @@ export default function TransportationSurvey({ surveyName, surveyTime }) {
           if (questionObj.id === currentQuestion) {
             return (
               <View key={questionObj.id}>
-                <Text style={styles.question}>{questionObj.text}</Text>
+                <View style={styles.question} className="rounded-lg">
+                  <Text className="text-xl text-center">
+                    {questionObj.text}
+                  </Text>
+                </View>
                 {questionObj.options.map((option) => (
                   <TouchableOpacity
                     key={option.id}
                     style={styles.button}
                     onPress={() => handleAnswer(option.id)}
                   >
-                    <Text style={styles.buttonText}>{option.text}</Text>
+                    <Text className="text-center text-xl text-slate-700">
+                      {option.text}
+                    </Text>
                   </TouchableOpacity>
                 ))}
               </View>
@@ -339,10 +345,6 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     marginBottom: 20,
     alignItems: "center",
-  },
-  buttonText: {
-    color: "#fff",
-    fontSize: 18,
   },
   image: {
     width: 50,

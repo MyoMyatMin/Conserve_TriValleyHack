@@ -5,16 +5,14 @@
     "scheme": "reactnative",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icons/polar_cute.png",
+    "icon": "./assets/images/logo.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/icons/polar.png",
+      "image": "./assets/images/logo.png",
       "resizeMode": "contain",
       "backgroundColor": "#2D7063"
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true
     },
@@ -27,8 +25,6 @@
     "web": {
       "favicon": "./assets/favicon.png"
     },
-    "plugins": [
-      "expo-router"   
-    ]
+    "plugins": ["expo-router"]
   }
 }
