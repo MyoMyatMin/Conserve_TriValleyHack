@@ -1,6 +1,9 @@
 import express from "express";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
+import helmet from "helmet";
+import cors from "cors";
+
 import userRoutes from "./routes/userRoutes.js";
 import connectDB from "./db/connectDB.js";
 import foodRecordRoutes from "./routes/foodRecordRoutes.js";
@@ -30,7 +33,12 @@ cloudinary.config({
 app.use(express.json({ limit: "50mb" }));
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
+app.use(helmet());
+app.use(cors());
 
+app.use("/api/get", (req, res) => {
+  res.json({ message: "hi" });
+});
 app.use("/api/users", userRoutes);
 app.use("/api/food", foodRecordRoutes);
 app.use("/api/transportation", trasportationRecordRoutes);
