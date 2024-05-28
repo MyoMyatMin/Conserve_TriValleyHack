@@ -1,4 +1,8 @@
 export const getStartOfToday = () => {
   const today = new Date();
-  return new Date(today.getFullYear(), today.getMonth(), today.getDate());
+  today.setHours(0, 0, 0, 0);
+
+  let isoStartDate = today.toISOString();
+
+  return isoStartDate;
 };
