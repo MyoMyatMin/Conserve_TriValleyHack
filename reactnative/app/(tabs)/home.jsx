@@ -1,4 +1,13 @@
-import { View, Text, Image, TouchableOpacity, Alert } from 'react-native'
+import {
+  View,
+  Text,
+  Image,
+  TouchableOpacity,
+  Alert,
+  Modal,
+  StyleSheet,
+} from 'react-native'
+import { router } from 'expo-router'
 import React, { useEffect, useState, useCallback } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { icons } from '../../constants'
@@ -14,6 +23,7 @@ import HomeMenu from '../components/HomeMenu'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
 const Home = () => {
+  const [showModal, setShowModal] = useState(true)
   const [isDay, setIsDay] = useState(false)
   const [isWeek, setIsWeek] = useState(false)
   const [isMonth, setIsMonth] = useState(false)
@@ -176,8 +186,99 @@ const Home = () => {
       {isDay && <DayDetails sevenDaysData={sevenDaysData} />}
       {isWeek && <WeekDetails weeklyData={weeklyData} />}
       {isMonth && <MonthDetails monthlyData={monthlyData} />}
+      <Modal visible={showModal} animationType='slide' transparent={true}>
+        <View style={styles.modalContainer}>
+          <View className='mb-10'>
+            <Text className='px-2 text-white text-2xl font-bold text-center'>
+              Have you taking your daily survey?
+            </Text>
+          </View>
+          <TouchableOpacity
+            style={styles.closeButton}
+            onPress={() => setShowModal(false)}
+          >
+            <Text style={styles.closeButtonText}>Yes</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.closeButtonNo}
+            onPress={() => {
+              setShowModal(false)
+              router.push('survey')
+            }}
+          >
+            <Text style={styles.closeButtonText}>No</Text>
+          </TouchableOpacity>
+        </View>
+      </Modal>
     </SafeAreaView>
   )
 }
+
+const styles = StyleSheet.create({
+  button: {
+    borderRadius: 20,
+    width: 300,
+    height: 150,
+    marginBottom: 25,
+    overflow: 'hidden',
+  },
+  buttonText: {
+    color: 'white',
+    fontSize: 30,
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+  text: {
+    color: 'white',
+    fontSize: 30,
+    marginBottom: 20,
+  },
+  modalContainer: {
+    width: 300,
+    height: 300,
+    backgroundColor: '#26D6AF',
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'absolute',
+    borderRadius: 20,
+    top: 150,
+    left: 50,
+    right: 50,
+    bottom: 50,
+  },
+  closeButton: {
+    width: 70,
+    height: 35,
+    backgroundColor: 'transparent',
+    borderWidth: 2,
+    borderColor: 'white',
+    padding: 5,
+    position: 'absolute',
+    bottom: 30,
+    left: 60,
+    borderRadius: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  closeButtonNo: {
+    width: 70,
+    borderRadius: 10,
+    height: 35,
+    backgroundColor: 'transparent',
+    borderWidth: 2,
+    borderColor: 'white',
+    padding: 5,
+    position: 'absolute',
+    bottom: 30,
+    right: 60,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  closeButtonText: {
+    color: 'white',
+    fontSize: 15,
+    fontWeight: 'bold',
+  },
+})
 
 export default Home

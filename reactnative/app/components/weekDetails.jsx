@@ -36,7 +36,7 @@ const WeekDetails = ({ weeklyData }) => {
           <CircularProgressBarTotal
             title={"This week total"}
             percentage={weeklyData[3]?.thisWeekTotal}
-            max={25000}
+            max={59.85}
             radius={130}
           />
         </TouchableOpacity>
@@ -47,7 +47,7 @@ const WeekDetails = ({ weeklyData }) => {
             amount={weeklyData[3]?.thisWeekTotal}
             time={'Weekly'}
             type={'Total'}
-            maxAvg={500}
+            maxAvg={59.85}
             className='flex justify-center items-center mt-4'
           />
         )}
@@ -57,7 +57,7 @@ const WeekDetails = ({ weeklyData }) => {
           <CircularProgressBar
             title={"Consumption"}
             percentage={weeklyData[0]?.thisWeekFood}
-            max={10000}
+            max={24.5}
             radius={32}
             imageSource={icons.Hamburger}
           />
@@ -69,7 +69,7 @@ const WeekDetails = ({ weeklyData }) => {
             amount={weeklyData[0]?.thisWeekFood}
             time={'Weekly'}
             type={'Consumption'}
-            maxAvg={500}
+            maxAvg={24.5}
             className='flex justify-center items-center mt-4'
           />
         )}
@@ -77,7 +77,7 @@ const WeekDetails = ({ weeklyData }) => {
           <CircularProgressBar
             title={"Transportation"}
             percentage={weeklyData[1]?.thisWeekTransport}
-            max={10000}
+            max={35}
             radius={32}
             imageSource={icons.bus}
           />
@@ -89,7 +89,7 @@ const WeekDetails = ({ weeklyData }) => {
             amount={weeklyData[1]?.thisWeekTransport}
             time={'Weekly'}
             type={'Transportation'}
-            maxAvg={500}
+            maxAvg={35}
             className='flex justify-center items-center mt-4'
           />
         )}
@@ -97,7 +97,7 @@ const WeekDetails = ({ weeklyData }) => {
           <CircularProgressBar
             title={"Plastic Usage"}
             percentage={weeklyData[2]?.thisWeekRecycle}
-            max={10000}
+            max={0.35}
             radius={32}
             imageSource={icons.trash}
           />
@@ -109,7 +109,7 @@ const WeekDetails = ({ weeklyData }) => {
             amount={weeklyData[2]?.thisWeekRecycle}
             time={'Weekly'}
             type={'PlasticUsage'}
-            maxAvg={500}
+            maxAvg={0.35}
             className='flex justify-center items-center mt-4'
           />
         )}
@@ -121,7 +121,7 @@ const WeekDetails = ({ weeklyData }) => {
               data={data}
               width={300}
               height={240}
-              maxValue={20000}
+              maxValue={70}
               noOfSections={4}
               isAnimated={true}
               color1="#26D6AF"

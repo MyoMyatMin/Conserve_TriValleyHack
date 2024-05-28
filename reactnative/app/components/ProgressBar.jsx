@@ -4,7 +4,7 @@ import { icons } from "../../constants";
 
 const ProgressBar = ({ thisMonthElectricity }) => {
   const [progress] = useState(new Animated.Value(0));
-  const [value] = useState(thisMonthElectricity);
+  const [value] = useState((100 * thisMonthElectricity) / 120);
   const [barColor, setBarColor] = useState("#26D6AF");
 
   useEffect(() => {

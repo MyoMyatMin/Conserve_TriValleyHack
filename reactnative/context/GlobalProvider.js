@@ -2,6 +2,28 @@ import { useContext, useState, createContext, useEffect } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import moment from "moment";
 
+const saveMorningSurveyStates = async (states) => {
+  try {
+    await AsyncStorage.setItem("morningSurveyStates", JSON.stringify(states));
+  } catch (e) {
+    console.log("Failed to save surveyStates", e);
+  }
+};
+const saveAfternoonSurveyStates = async (states) => {
+  try {
+    await AsyncStorage.setItem("afternoonSurveyStates", JSON.stringify(states));
+  } catch (e) {
+    console.log("Failed to save surveyStates", e);
+  }
+};
+const saveNightSurveyStates = async (states) => {
+  try {
+    await AsyncStorage.setItem("nightSurveyStates", JSON.stringify(states));
+  } catch (e) {
+    console.log("Failed to save surveyStates", e);
+  }
+};
+
 const saveStates = async (states) => {
   try {
     await AsyncStorage.setItem("states", JSON.stringify(states));
@@ -9,10 +31,59 @@ const saveStates = async (states) => {
     console.log("Failed to save states:", e);
   }
 };
+
+const loadMorningSurveyStates = async () => {
+  try {
+    const statesJson = await AsyncStorage.getItem("morningSurveyStates");
+    if (statesJson) {
+      return JSON.parse(statesJson);
+    } else {
+      return {
+        objtransportation: "pending",
+        objfood: "pending",
+        objutility: "pending",
+      };
+    }
+  } catch (e) {
+    console.log("Failed to load states: ", e);
+  }
+};
+const loadAfternoonSurveyStates = async () => {
+  try {
+    const statesJson = await AsyncStorage.getItem("afternoonSurveyStates");
+    if (statesJson) {
+      return JSON.parse(statesJson);
+    } else {
+      return {
+        objtransportation: "pending",
+        objfood: "pending",
+        objutility: "pending",
+      };
+    }
+  } catch (e) {
+    console.log("Failed to load states: ", e);
+  }
+};
+const loadNightSurveyStates = async () => {
+  try {
+    const statesJson = await AsyncStorage.getItem("nightSurveyStates");
+    if (statesJson) {
+      return JSON.parse(statesJson);
+    } else {
+      return {
+        objtransportation: "pending",
+        objfood: "pending",
+        objutility: "pending",
+      };
+    }
+  } catch (e) {
+    console.log("Failed to load states: ", e);
+  }
+};
+
 const loadStates = async () => {
   try {
     const statesJson = await AsyncStorage.getItem("states");
-
     if (statesJson) {
       return JSON.parse(statesJson);
     } else {
@@ -41,6 +112,16 @@ const GlobalContext = createContext();
 export const useGlobalContext = () => useContext(GlobalContext);
 const GlobalProvider = ({ children }) => {
   // const [states, setStates] = useState()
+  const [morningTransportation, setMorningTransportation] = useState("pending");
+  const [morningFood, setMorningFood] = useState("pending");
+  const [morningUtility, setMorningUtility] = useState("pending");
+  const [afternoonTransportation, setAfternoonTransportation] =
+    useState("pending");
+  const [afternoonFood, setAfternoonFood] = useState("pending");
+  const [afternoonUtility, setAfternoonUtility] = useState("pending");
+  const [nightTransportation, setNightTransportation] = useState("pending");
+  const [nightFood, setNightFood] = useState("pending");
+  const [nightUtility, setNightUtility] = useState("pending");
   const [morning, setMorning] = useState("pending");
   const [afternoon, setAfternoon] = useState("pending");
   const [night, setNight] = useState("pending");
@@ -48,6 +129,28 @@ const GlobalProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [previousDate, setPreviousDate] = useState(null);
+
+  const loadInitialMorningSurveyStates = async () => {
+    const initialStates = await loadMorningSurveyStates();
+    setMorningTransportation(initialStates.objtransportation);
+    setMorningFood(initialStates.objfood);
+    setMorningUtility(initialStates.objutility);
+    return initialStates;
+  };
+  const loadInitialAfternoonSurveyStates = async () => {
+    const initialStates = await loadAfternoonSurveyStates();
+    setAfternoonTransportation(initialStates.objtransportation);
+    setAfternoonFood(initialStates.objfood);
+    setAfternoonUtility(initialStates.objutility);
+    return initialStates;
+  };
+  const loadInitialNightSurveyStates = async () => {
+    const initialStates = await loadNightSurveyStates();
+    setNightTransportation(initialStates.objtransportation);
+    setNightFood(initialStates.objfood);
+    setNightUtility(initialStates.objutility);
+    return initialStates;
+  };
 
   const loadInitialStates = async () => {
     const initialStates = await loadStates();
@@ -83,6 +186,28 @@ const GlobalProvider = ({ children }) => {
 
       if (isNewDay) {
         let myobj = await loadInitialStates();
+        let morningSurveyStates = await loadInitialMorningSurveyStates();
+        morningSurveyStates.objtransportation = "pending";
+        morningSurveyStates.objfood = "pending";
+        morningSurveyStates.objutility = "pending";
+        setMorningTransportation("pending");
+        setMorningFood("pending");
+        setMorningUtility("pending");
+        let afternoonSurveyStates = await loadInitialAfternoonSurveyStates();
+        afternoonSurveyStates.objtransportation = "pending";
+        afternoonSurveyStates.objfood = "pending";
+        afternoonSurveyStates.objutility = "pending";
+        setAfternoonTransportation("pending");
+        setAfternoonFood("pending");
+        setAfternoonUtility("pending");
+        let nightSurveyStates = await loadInitialNightSurveyStates();
+        nightSurveyStates.objtransportation = "pending";
+        nightSurveyStates.objfood = "pending";
+        nightSurveyStates.objutility = "pending";
+        setNightTransportation("pending");
+        setNightFood("pending");
+        setNightUtility("pending");
+
         myobj.objmorning = "pending";
         myobj.objafternoon = "pending";
         myobj.objnight = "pending";
@@ -90,10 +215,18 @@ const GlobalProvider = ({ children }) => {
         setAfternoon(myobj.objafternoon);
         setNight(myobj.objnight);
         setPreviousDate(currentDate);
+
         await AsyncStorage.setItem("previousDate", currentDate.toISOString());
         await saveStates(myobj);
+        await saveMorningSurveyStates(morningSurveyStates);
+        await saveAfternoonSurveyStates(afternoonSurveyStates);
+        await saveNightSurveyStates(nightSurveyStates);
       }
       let myobj = await loadInitialStates();
+      let morningSurveyStates = await loadInitialMorningSurveyStates();
+      let afternoonSurveyStates = await loadInitialAfternoonSurveyStates();
+      let nightSurveyStates = await loadInitialNightSurveyStates();
+
       let newMorning = "pending";
       let newAfternoon = "pending";
       let newNight = "pending";
@@ -106,7 +239,6 @@ const GlobalProvider = ({ children }) => {
         newMorning = "ready";
       } else if (myobj.objmorning == "completed") {
         newMorning = "completed";
-        //newMorning = "ready";
       } else {
         newMorning = "pending";
       }
@@ -133,6 +265,15 @@ const GlobalProvider = ({ children }) => {
       setMorning(newMorning);
       setAfternoon(newAfternoon);
       setNight(newNight);
+      setMorningTransportation(morningSurveyStates.objtransportation);
+      setMorningFood(morningSurveyStates.objfood);
+      setMorningUtility(morningSurveyStates.objutility);
+      setAfternoonTransportation(afternoonSurveyStates.objtransportation);
+      setAfternoonFood(afternoonSurveyStates.objfood);
+      setAfternoonUtility(afternoonSurveyStates.objutility);
+      setNightTransportation(nightSurveyStates.objtransportation);
+      setNightFood(nightSurveyStates.objfood);
+      setNightUtility(nightSurveyStates.objutility);
 
       await saveStates(myobj);
     };
@@ -158,6 +299,30 @@ const GlobalProvider = ({ children }) => {
         setNight,
         saveStates,
         loadStates,
+        morningTransportation,
+        setMorningTransportation,
+        morningFood,
+        setMorningFood,
+        morningUtility,
+        setMorningUtility,
+        saveMorningSurveyStates,
+        loadMorningSurveyStates,
+        afternoonTransportation,
+        setAfternoonTransportation,
+        afternoonFood,
+        setAfternoonFood,
+        afternoonUtility,
+        setAfternoonUtility,
+        saveAfternoonSurveyStates,
+        loadAfternoonSurveyStates,
+        nightTransportation,
+        setNightTransportation,
+        nightFood,
+        setNightFood,
+        nightUtility,
+        setNightUtility,
+        loadNightSurveyStates,
+        saveNightSurveyStates,
       }}
     >
       {children}

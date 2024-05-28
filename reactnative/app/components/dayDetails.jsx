@@ -33,6 +33,7 @@ const DayDetails = ({ sevenDaysData }) => {
     const dateObj = new Date(entry.createdAt);
     const month = (dateObj.getMonth() + 1).toString().padStart(2, "0");
     const day = dateObj.getDate().toString().padStart(2, "0");
+
     return `${month}/${day}`;
   });
 
@@ -128,7 +129,7 @@ const DayDetails = ({ sevenDaysData }) => {
               data={data}
               width={300}
               height={240}
-              maxValue={2800}
+              maxValue={10}
               noOfSections={4}
               isAnimated={true}
               color1="#26D6AF"
