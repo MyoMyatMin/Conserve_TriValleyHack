@@ -37,8 +37,8 @@ const ElectricityModal = ({
     };
 
     try {
-      const apiUrl = process.env.EXPO_PUBLIC_API_URL;
-
+      //const apiUrl = process.env.EXPO_PUBLIC_API_URL;
+      const apiUrl = "https://conserve-trivalleyhack.onrender.com";
       const res = await fetch(`${apiUrl}/api/electricity/create`, {
         method: "POST",
         headers: {

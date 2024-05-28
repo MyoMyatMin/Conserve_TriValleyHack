@@ -35,7 +35,8 @@ const Home = () => {
 
   useEffect(() => {
     const fetchMonthlyData = async () => {
-      const apiUrl = process.env.EXPO_PUBLIC_API_URL;
+      //const apiUrl = process.env.EXPO_PUBLIC_API_URL;
+      const apiUrl = "https://conserve-trivalleyhack.onrender.com";
       const token = await AsyncStorage.getItem("userData");
       if (!token) throw new Error("No token found");
       try {
@@ -57,7 +58,8 @@ const Home = () => {
 
   useEffect(() => {
     const fetchWeeklyData = async () => {
-      const apiUrl = process.env.EXPO_PUBLIC_API_URL;
+      //const apiUrl = process.env.EXPO_PUBLIC_API_URL;
+      const apiUrl = "https://conserve-trivalleyhack.onrender.com";
       const token = await AsyncStorage.getItem("userData");
       if (!token) throw new Error("No token found");
       try {
@@ -79,7 +81,8 @@ const Home = () => {
 
   useEffect(() => {
     const fetchSevenDaysData = async () => {
-      const apiUrl = process.env.EXPO_PUBLIC_API_URL;
+      //const apiUrl = process.env.EXPO_PUBLIC_API_URL;
+      const apiUrl = "https://conserve-trivalleyhack.onrender.com";
       const token = await AsyncStorage.getItem("userData");
       if (!token) throw new Error("No token found");
       try {
@@ -104,7 +107,8 @@ const Home = () => {
       setIsMonth(false);
       setIsWeek(false);
       const fetchSevenDaysData = async () => {
-        const apiUrl = process.env.EXPO_PUBLIC_API_URL;
+        //const apiUrl = process.env.EXPO_PUBLIC_API_URL;
+        const apiUrl = "https://conserve-trivalleyhack.onrender.com";
         const token = await AsyncStorage.getItem("userData");
         if (!token) throw new Error("No token found");
         try {

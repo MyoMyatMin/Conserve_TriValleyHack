@@ -193,7 +193,8 @@ export default function UtilitySurvey({ surveyName, surveyTime }) {
       if (surveyTime === "morning") {
         console.log(totalCarbonFootprint);
         try {
-          const apiUrl = process.env.EXPO_PUBLIC_API_URL;
+          //const apiUrl = process.env.EXPO_PUBLIC_API_URL;
+          const apiUrl = "https://conserve-trivalleyhack.onrender.com";
           const res = await fetch(`${apiUrl}/api/recycling/morning/create`, {
             method: "POST",
             headers: {
@@ -213,7 +214,8 @@ export default function UtilitySurvey({ surveyName, surveyTime }) {
       } else if (surveyTime === "afternoon") {
         // console.log(surveyTime, totalCarbonFootprint);
         try {
-          const apiUrl = process.env.EXPO_PUBLIC_API_URL;
+          //const apiUrl = process.env.EXPO_PUBLIC_API_URL;
+          const apiUrl = "https://conserve-trivalleyhack.onrender.com";
           // console.log(apiUrl);
           const res = await fetch(`${apiUrl}/api/recycling/noon/create`, {
             method: "POST",
@@ -236,7 +238,8 @@ export default function UtilitySurvey({ surveyName, surveyTime }) {
       } else {
         // console.log(totalCarbonFootprint);
         try {
-          const apiUrl = process.env.EXPO_PUBLIC_API_URL;
+          //const apiUrl = process.env.EXPO_PUBLIC_API_URL;
+          const apiUrl = "https://conserve-trivalleyhack.onrender.com";
           const res = await fetch(`${apiUrl}/api/recycling/evening/create`, {
             method: "POST",
 
