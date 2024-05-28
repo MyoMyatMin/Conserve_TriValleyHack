@@ -121,6 +121,7 @@ const App = () => {
             containerStyles='px-3 mt-7 w-25 h-5'
             textStyles='text-sm'
           />
+
         </View>
       </ScrollView>
       <StatusBar backgroundColor={'#0B1A22'} style='light' />

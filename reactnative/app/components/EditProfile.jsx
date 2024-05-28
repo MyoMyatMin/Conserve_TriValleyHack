@@ -16,6 +16,7 @@ const EditProfile = ({ pickImageAsync, editModalVisible, records, handleSaveUpda
     <Modal
       visible={editModalVisible}
       animationType="slide"
+      transparent={true}
     >
       <View className="flex h-full items-center justify-center">
         <View className="min-w-full max-w-sm p-6 my-12 bg-purple rounded-2xl">
