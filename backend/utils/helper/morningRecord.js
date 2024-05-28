@@ -19,7 +19,6 @@ const morningRecord = async (Record, req, res) => {
       user_id: user_id,
       createdAt: { $gte: startOfToday },
     });
-    console.log(existingDailyRecord, startOfToday);
     if (existingDailyRecord) {
       const isConserve = existingDailyRecord.data + data < 8.55;
       await DailyTotalRecord.updateOne(

@@ -19,6 +19,7 @@ import getProfileInfosRoutes from "./routes/getProfileInfosRoutes.js";
 import electricityRecordRoutes from "./routes/electricityRecordRoutes.js";
 import generateDummyFinal from "./controllers/generateDummyFinal.js";
 import electricityDummy from "./controllers/electricityDummy.js";
+import job from "./cron/cron.js";
 
 const app = express();
 dotenv.config();
@@ -51,6 +52,7 @@ app.use("/api/getProfileInfos", getProfileInfosRoutes);
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
   connectDB();
+  job.start();
   // generateDummyFinal();
   // dropTables();
   // deleteRecordsByUserId("664d9ad72037ed7c1238c526");
