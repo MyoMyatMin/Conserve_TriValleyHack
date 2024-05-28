@@ -1,4 +1,5 @@
 import DailyTotalRecord from "../../models/dailyTotalRecordModel.js";
+import { getStartOfToday } from "./getStartOfToday.js";
 
 const morningRecord = async (Record, req, res) => {
   try {
@@ -9,12 +10,7 @@ const morningRecord = async (Record, req, res) => {
       data: data,
     });
     const resultRecord = await newRecord.save();
-    const today = new Date();
-    const startOfToday = new Date(
-      today.getFullYear(),
-      today.getMonth(),
-      today.getDate()
-    );
+    const startOfToday = getStartOfToday();
     const existingDailyRecord = await DailyTotalRecord.findOne({
       user_id: user_id,
       createdAt: { $gte: startOfToday },
