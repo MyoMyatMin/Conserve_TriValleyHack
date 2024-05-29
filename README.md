@@ -3,6 +3,10 @@
 
 The idea for CONSERVE emerged from our experience in a sustainability and carbon footprint course. As students with a technological background, we wanted to use our skills to positively impact the world. During our research, we discovered that existing apps and websites for tracking carbon footprints were often complex and difficult to use daily. This insight led to the creation of CONSERVE—a user-friendly app designed to help people progressively reduce their carbon emissions day by day, month by month, and year by year.
 
+### Objective of CONSERVE
+
+To encourage the users of CONSERVE to make environmentally consicious choices based on their carbon emission.
+
 ### Functionality of CONSERVE
 
 **Daily Interaction and Tracking:**
