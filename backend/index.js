@@ -52,7 +52,7 @@ app.use("/api/getProfileInfos", getProfileInfosRoutes);
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
   connectDB();
-  //job.start();
+  job.start();
   // generateDummyFinal();
   // dropTables();
   // deleteRecordsByUserId("664d9ad72037ed7c1238c526");
