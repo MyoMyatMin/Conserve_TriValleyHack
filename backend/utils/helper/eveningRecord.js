@@ -75,10 +75,12 @@ const eveningRecord = async (Record, req, res) => {
         unlockedAchievements.push(oneMonthSA);
       }
       if (existingDailyRecord.data + data < 8.55) {
-        await User.updateOne(
-          { _id: user_id },
-          { $set: { conserveAmount: 8.55 - (existingDailyRecord.data + data) } }
-        );
+        const user = await User.findOne({ _id: user_id });
+        const existingConserveAmount = user.conserveAmount || 0;
+
+        const newConserveAmount =
+          8.55 - (existingDailyRecord.data + data) + existingConserveAmount;
+        await User.updateOne({ _id: user_id }, { $set: { newConserveAmount } });
       }
       if (unlockedAchievements.length > 0) {
         res.status(200).json({

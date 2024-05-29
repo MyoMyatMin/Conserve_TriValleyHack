@@ -7,6 +7,5 @@ export const getStartOfToday = () => {
     today.setDate(today.getDate() - 1);
     today.setHours(17, 0, 0, 0);
   }
-  console.log(today);
   return today;
 };
