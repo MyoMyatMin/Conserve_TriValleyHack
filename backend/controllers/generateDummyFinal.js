@@ -18,10 +18,11 @@ import {
 } from "../utils/helper/checkAchievements.js";
 
 const generateDummyFinal = async () => {
-  const startDate = new Date(2023, 4, 27); // May is month 4 (zero-based indexing)
-  const endDate = new Date(2024, 4, 25); // May is month 4 (zero-based indexing)
-  const user_id = "664216f602e3f37efbfc5023";
+  const startDate = new Date(2023, 4, 30); // May is month 4 (zero-based indexing)
+  const endDate = new Date(2024, 4, 28); // May is month 4 (zero-based indexing)
+  //const user_id = "664216f602e3f37efbfc5023";
   //const user_id = "664d9ad72037ed7c1238c526";
+  const user_id = "6656cb27e0ecde2b599a4e20";
   for (
     let date = new Date(startDate);
     date <= endDate;

@@ -52,7 +52,7 @@ app.use("/api/getProfileInfos", getProfileInfosRoutes);
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
   connectDB();
-  job.start();
+  //job.start();
   // generateDummyFinal();
   // dropTables();
   // deleteRecordsByUserId("664d9ad72037ed7c1238c526");
@@ -68,12 +68,12 @@ app.listen(PORT, () => {
   //   { data: 124, forMonth: "2024-02" },
   //   { data: 121, forMonth: "2024-03" },
   //   { data: 119, forMonth: "2024-04" },
-  //   { data: 108, forMonth: "2024-05" },
   // ];
 
   // const userId = "664216f602e3f37efbfc5023"; // Replace with actual user ID
   // //const userId = "664d9ad72037ed7c1238c526";
-  // electricityDummy(userId, yearData);
+  // const user_id = "6656cb27e0ecde2b599a4e20";
+  // electricityDummy(user_id, yearData);
   // generateDummyFinal();
   // // generateData();
 
