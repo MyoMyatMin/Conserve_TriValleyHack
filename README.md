@@ -1,41 +1,44 @@
-
-### Inspiration for CONSERVE
+## Inspiration for CONSERVE
 
 The idea for CONSERVE emerged from our experience in a sustainability and carbon footprint course. As students with a technological background, we wanted to use our skills to positively impact the world. During our research, we discovered that existing apps and websites for tracking carbon footprints were often complex and difficult to use daily. This insight led to the creation of CONSERVE—a user-friendly app designed to help people progressively reduce their carbon emissions day by day, month by month, and year by year.
 
-### Objective of CONSERVE
+## Objective of CONSERVE
 
-To encourage the users of CONSERVE to make environmentally consicious choices based on their carbon emission.
+- To encourage the users of CONSERVE to make environmentally consicious choices based on their carbon emission.
 
-### Functionality of CONSERVE
+## What it does
 
 **Daily Interaction and Tracking:**
 - CONSERVE sends daily notifications (morning, afternoon, or night) prompting users to answer questions about their daily activities.
 - The questions cover transportation used for commuting, food consumption, and plastic waste generated.
-- Based on the responses, CONSERVE calculates the user's carbon emissions and informs them if they've reached their limit, encouraging environmentally conscious choices like reducing food consumption or opting for public transportation.
+- Based on the responses, CONSERVE calculates the user's carbon emissions and informs them if they've reached their limit, encouraging sustainable choices like reducing food consumption or opting for public transportation.
 
 **User Flow in CONSERVE:**
-
 1. **Splash Screen & Authentication:**
    - Users are greeted with a splash screen upon opening the app.
    - If not logged in, users are directed to the sign-in/sign-up page for authentication and account creation.
-
 2. **Home Page:**
    - Post-login, users land on the home page displaying their daily, weekly, and monthly records.
    - Users can view detailed stats and numbers by tapping on each record button (daily, weekly, monthly).
-
 3. **Profile Management:**
    - Users can update their profile information, such as profile picture and name.
    - The profile page also shows current streaks, account age, and highest streaks.
-
 4. **Daily Surveys:**
    - Users are prompted to complete daily surveys if not already done.
    - The survey page allows users to take morning, afternoon, and night surveys focused on transportation, food, and recycling.
-
 5. **Insights & Achievements:**
    - The insights tab leads to a page displaying achievements in terms of badges and tree progress.
 
-### Tech Stack for CONSERVE
+## How we built it
+**Backend:**
+
+The backend of CONSERVE is built with Express and Node.js, utilizing various libraries and tools to ensure robust and secure API development. 
+
+**Frontend:**
+
+The frontend of CONSERVE is powered by React Native and Expo, using several libraries and tools to enhance the development process and user experience.
+
+## Tech Stack for CONSERVE
 
 **Backend:**
 
@@ -80,12 +83,12 @@ The frontend of CONSERVE is powered by React Native and Expo, using several libr
 
 The frontend application is hosted on the Expo Store for Android, ensuring seamless distribution and updates.
 
-### Conclusion for Tech Stack
+## Conclusion for Tech Stack
 
 By leveraging a comprehensive tech stack that includes Express, Node.js, React Native, and Expo, along with various supportive libraries and tools, CONSERVE is designed to deliver a robust, user-friendly, and scalable solution for tracking and reducing carbon footprints. This tech stack not only facilitates efficient development and deployment but also ensures a seamless and engaging user experience.
 
 
-### Challenges We Faced
+## Challenges we ran into
 
 - First-time mobile development experience using React Native and Expo Go.
 - Started development a month late.
@@ -94,7 +97,7 @@ By leveraging a comprehensive tech stack that includes Express, Node.js, React N
 - Difficulty in finding specific data to calculate carbon emissions.
 - First-time usage of project management tools.
 
-### Accomplishments We Are Proud Of
+## Accomplishments that we're proud of
 
 - Successfully completed the app within the given time frame, despite being our first project using new technologies.
 - Developed a satisfying UI.
@@ -103,15 +106,16 @@ By leveraging a comprehensive tech stack that includes Express, Node.js, React N
 - Fostered a responsible and contributive mindset among all team members.
 - Solved problems through inclusive decision-making.
 
-### Lessons Learned
+## What we learned
 
 - The complete process of building an app from scratch, including R&D, UI, frontend, backend, database, cloud hosting, deployment, and creating a landing page.
 - Familiarization with real-life work scenarios such as using Git, conducting meetings, and project management.
 - The importance of participating in hackathons.
 - The critical role of UI/UX design in making user-friendly applications.
 
-### Future Plans for CONSERVE
+## What's next for CONSERVE
 
+- Improve QandA session with more accurate, more detailed and inclusive questions and data.
 - Launch the app on both iOS and Android platforms.
 - Partner with NGOs and environmental groups to plant trees based on users' achievements.
 - Integrate social features to allow users to share progress.
@@ -121,3 +125,33 @@ By leveraging a comprehensive tech stack that includes Express, Node.js, React N
 - Explore business opportunities, including partnerships with environmentally friendly companies for advertising.
 
 By focusing on these areas, CONSERVE aims to become a comprehensive platform for environmental sustainability, encouraging and enabling users to make greener choices effortlessly.
+
+## Additional project resources
+- [Figma](https://www.figma.com/design/R5zoG0VakWzIeMa8Oi6Trj/TriVal-Hack---FIGMA?node-id=433-18&t=Vp9nDTiadINt1aNJ-1)
+- [Trello](https://trello.com/invite/b/X5bDfT93/ATTIfaf4a1241ff3cd0b2e8560304c0473cd3329437A/trivalley-hacks)
+
+## Credits and acknowledgements
+
+- [React Native Development lessons] (https://youtu.be/ZBCUegTZF7M?si=4PJ2sJkgL6MlSLZx)
+- [Landing Page Reference] (https://www.youtube.com/watch?v=wXnlHIvKnTM&list=PL07efmqYWHZ8jroJAkkFB2s4ZKpVNCOQa&index=1)
+- [Image resources - vecteezy](https://www.vecteezy.com/)
+- [Image resources - shutterstock](https://www.shutterstock.com/th/)
+- [Image resources - gencraft](https://gencraft.com/)
+- [Resource research links](https://www.carbontrust.com/en-as)
+- [Resource research links](https://e360.yale.edu/features/what_is_the_carbon_limit_that_depends_who_you_ask)
+- [Resource research links](https://www.pawprint.eco/eco-blog/average-carbon-footprint-globally#:~:text=How%20can%20you%20reduce%20your%20carbon%20footprint%3F%20To,total%20of%205%20tonnes%20of%20CO2e%20per%20year.)
+- [Resource research links](https://www.bbc.co.uk/food/articles/carbon)
+- [Resource research links](https://www.bbc.com/news/science-environment-46459714)
+- [Resource research links](https://ourworldindata.org/food-choice-vs-eating-local)
+- [Resource research links](https://www.linkedin.com/advice/3/how-do-you-calculate-transportation-carbon)
+- [Resource research links](https://www.nationalgeographic.com/environment/article/plastic-pollution)
+- [Resource research links](https://www.carbontrust.com/en-as)
+- [Resource research links](https://ourworldindata.org/food-choice-vs-eating-local)
+- [ChatGPT](https://chatgpt.com/)
+
+
+
+
+
+
+
