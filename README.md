@@ -1,3 +1,21 @@
+# CONSERVE X TriValley Summer Long Hackathon
+Repository of CONSERVE - submission for DEVPOST - TriValley Summer Long Hackathon
+
+## Table of contents
+
+- [Inspiration for CONSERVE](#inspiration-for-conserve)
+- [Objective of CONSERVE](#objective-of-conserve)
+- [What it does](#what-it-does)
+- [User Flow in CONSERVE](#user-flow-in-conserve)
+- [How we built it](#how-we-built-it)
+- [Tech Stack for CONSERVE](#tech-stack-for-conserve)
+- [Challenges we ran into](#challenges-we-ran-into)
+- [Accomplishments that we're proud of](#accomplishments-that-were-proud-of)
+- [What we learned](#what-we-learned)
+- [What's next for CONSERVE](#whats-next-for-conserve)
+- [Additional project resources](#additional-project-resources)
+- [Credits and acknowledgements](#credits-and-acknowledgements)
+  
 ## Inspiration for CONSERVE
 
 The idea for CONSERVE emerged from our experience in a sustainability and carbon footprint course. As students with a technological background, we wanted to use our skills to positively impact the world. During our research, we discovered that existing apps and websites for tracking carbon footprints were often complex and difficult to use daily. This insight led to the creation of CONSERVE—a user-friendly app designed to help people progressively reduce their carbon emissions day by day, month by month, and year by year.
