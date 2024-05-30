@@ -32,7 +32,7 @@ const DayDetails = ({ sevenDaysData }) => {
 
   return (
     <ScrollView>
-      <View className="flex justify-center items-center mt-4">       
+      <View style={styles.center}>
         <TouchableOpacity onPress={() => toggleModal('Total')}>
           <CircularProgressBarTotal
             title={"Today Total"}
@@ -40,7 +40,7 @@ const DayDetails = ({ sevenDaysData }) => {
             max={2800}
             radius={130}
           />
-        </TouchableOpacity>         
+        </TouchableOpacity>
         {modalVisible && selectedType === 'Total' && (
           <DataDetail
             modalVisible={modalVisible}
@@ -49,11 +49,11 @@ const DayDetails = ({ sevenDaysData }) => {
             time={'Daily'}
             type={'Total'}
             maxAvg={500}
-            className='flex justify-center items-center mt-4'
+            style={styles.center}
           />
-        )}       
+        )}
       </View>
-      <View className="flex flex-row justify-around items-center my-6 ">       
+      <View style={styles.row}>
         <TouchableOpacity onPress={() => toggleModal('Consumption')}>
           <CircularProgressBar
             title={"Consumption"}
@@ -71,7 +71,7 @@ const DayDetails = ({ sevenDaysData }) => {
             time={'Daily'}
             type={'Consumption'}
             maxAvg={500}
-            className='flex justify-center items-center mt-4'
+            style={styles.center}
           />
         )}
         <TouchableOpacity onPress={() => toggleModal('Transportation')}>
@@ -81,7 +81,7 @@ const DayDetails = ({ sevenDaysData }) => {
             max={1000}
             radius={32}
             imageSource={icons.bus}
-        />
+          />
         </TouchableOpacity>
         {modalVisible && selectedType === 'Transportation' && (
           <DataDetail
@@ -91,7 +91,7 @@ const DayDetails = ({ sevenDaysData }) => {
             time={'Daily'}
             type={'Transportation'}
             maxAvg={500}
-            className='flex justify-center items-center mt-4'
+            style={styles.center}
           />
         )}
         <TouchableOpacity onPress={() => toggleModal('PlasticUsage')}>
@@ -101,7 +101,7 @@ const DayDetails = ({ sevenDaysData }) => {
             max={1000}
             radius={32}
             imageSource={icons.trash}
-        />
+          />
         </TouchableOpacity>
         {modalVisible && selectedType === 'PlasticUsage' && (
           <DataDetail
@@ -111,48 +111,79 @@ const DayDetails = ({ sevenDaysData }) => {
             time={'Daily'}
             type={'PlasticUsage'}
             maxAvg={500}
-            className='flex justify-center items-center mt-4'
+            style={styles.center}
           />
-        )}                        
-        
+        )}
       </View>
-      <View className="flex items-center justify-center p-6 mt-6 ">
-        <View className="mr-6">
-          {data && data.length > 0 ? (
-            <LineChart
-              data={data}
-              width={300}
-              height={240}
-              maxValue={2800}
-              noOfSections={4}
-              isAnimated={true}
-              color1="#26D6AF"
-              dataPointsColor1="#FFFFFF"
-              overflowTop={200}
-              xAxisColor="#FFFFFF"
-              yAxisColor={"#FFFFFF"}
-              xAxisLabelTexts={days}
-              xAxisLabelTextStyle={styles.xAxisLabel}
-              yAxisTextStyle={styles.xAxisLabel}
-              spacing={44}
-              maxValueLineColor="#FF0000"
-            />
-          ) : (
-            <View className="flex items-center justify-center p-8 ml-6 bg-purple rounded-lg">
-              <Text className="text-white font-psemibold text-center  text-base">
-                Do not have enough data to show summerize chart.
-              </Text>
-            </View>
-          )}
-        </View>
+      <View style={styles.chartContainer}>
+        {data && data.length > 0 ? (
+          <LineChart
+            data={data}
+            width={300}
+            height={240}
+            maxValue={2800}
+            noOfSections={4}
+            isAnimated={true}
+            color1="#26D6AF"
+            dataPointsColor1="#FFFFFF"
+            overflowTop={200}
+            xAxisColor="#FFFFFF"
+            yAxisColor={"#FFFFFF"}
+            xAxisLabelTexts={days}
+            xAxisLabelTextStyle={styles.xAxisLabel}
+            yAxisTextStyle={styles.xAxisLabel}
+            spacing={44}
+            maxValueLineColor="#FF0000"
+          />
+        ) : (
+          <View style={styles.noDataContainer}>
+            <Text style={styles.noDataText}>
+              Do not have enough data to show summarized chart.
+            </Text>
+          </View>
+        )}
       </View>
     </ScrollView>
   );
 };
+
 const styles = StyleSheet.create({
+  center: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 16,
+  },
+  row: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    marginVertical: 24,
+  },
+  chartContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 24,
+    marginTop: 24,
+  },
   xAxisLabel: {
     color: "#FFFFFF",
     fontSize: 12,
+  },
+  noDataContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 32,
+    marginLeft: 24,
+    backgroundColor: 'purple',
+    borderRadius: 16,
+  },
+  noDataText: {
+    color: 'white',
+    fontFamily: 'Poppins-SemiBold',
+    textAlign: 'center',
+    fontSize: 16,
   },
 });
 
