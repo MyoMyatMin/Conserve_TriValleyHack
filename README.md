@@ -161,7 +161,7 @@ By focusing on these areas, CONSERVE aims to become a comprehensive platform for
 
 ## Testing with Android Phone or Expo Orbit
 
-If you have an Android phone or Expo Orbit, you can try the application via this link: [Expo Build](#).
+If you have an Android phone or Expo Orbit, you can try the application via this link: [Expo Build](https://expo.dev/accounts/conserve/projects/reactnative/builds/6bb2d168-cbc1-4b9f-9c44-9addc15f99f0).
 
 ### For Android
 - Click the link to download the app and test using the following credentials:
@@ -258,7 +258,7 @@ If you have an Android phone or Expo Orbit, you can try the application via this
 
 ## Additional Resources
 
-- [YouTube Video for MongoDB Setup](#)
+- [YouTube Video for MongoDB Setup](https://youtu.be/s0anSjEeua8?si=npslm_EYsi6LRcIZ)
 - [Cloudinary Dashboard](https://cloudinary.com/)
 
 This completes the installation and setup process. If you encounter any issues, refer to the respective documentation or support resources.
