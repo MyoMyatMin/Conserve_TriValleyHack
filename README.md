@@ -154,6 +154,115 @@ By focusing on these areas, CONSERVE aims to become a comprehensive platform for
 
 ## Installation Manual
 
+- [Testing with Android Phone or Expo Orbit](#testing-with-android-phone-or-expo-orbit)
+- [Cloning the Repository and Testing](#cloning-the-repository-and-testing)
+- [Testing with Localhost](#testing-with-localhost)
+- [Additional Resources](#additional-resources)
+
+## Testing with Android Phone or Expo Orbit
+
+If you have an Android phone or Expo Orbit, you can try the application via this link: [Expo Build](#).
+
+### For Android
+- Click the link to download the app and test using the following credentials:
+  - **Email**: testing123@gmail.com
+  - **Password**: 1234
+
+### For Expo Orbit
+- Choose the Android emulator (iOS won't work since the deployment version is with an Android build).
+
+**Note**: This link will expire on June 12th, 2024.
+
+## Cloning the Repository and Testing
+
+1. Clone the repository:
+    ```sh
+    git clone https://github.com/MyoMyatMin/Conserve_TriValleyHack/tree/0475841472acb838f6ae7239e6f2ecd5a05229e4
+    ```
+
+2. Navigate to the `reactnative` directory:
+    ```sh
+    cd reactnative
+    ```
+
+3. Install the dependencies:
+    ```sh
+    npm install
+    ```
+
+4. Start the Expo server:
+    ```sh
+    npx expo start -c
+    ```
+
+5. A QR code will be generated. Scan it with the Expo Go app (available on both Play Store and App Store).
+
+## Testing with Localhost
+
+1. Clone the repository:
+    ```sh
+    git clone https://github.com/MyoMyatMin/Conserve_TriValleyHack/tree/0475841472acb838f6ae7239e6f2ecd5a05229e4
+    ```
+
+2. Navigate to the `reactnative` directory and create an `.env` file:
+    ```sh
+    cd reactnative
+    touch .env
+    ```
+
+3. Add the following line to the `.env` file, replacing `Your IP address` with your actual IP address:
+    ```sh
+    EXPO_PUBLIC_API_URL="Your IP address"
+    ```
+
+4. Install the dependencies:
+    ```sh
+    npm install
+    ```
+
+5. Navigate to the `backend` directory and create an `.env` file:
+    ```sh
+    cd ../backend
+    touch .env
+    ```
+
+6. Create an account in [MongoDB Atlas](https://cloud.mongodb.com) and set up a cluster. Obtain the username, password, and connection URI.
+
+7. Add the following lines to the backend `.env` file, replacing placeholders with actual values:
+    ```env
+    MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/your-db-name
+    PORT=3000
+    JWT_SECRET=your-secret
+    CLOUDINARY_CLOUD_NAME=your-cloud-name
+    CLOUDINARY_API_KEY=your-api-key
+    CLOUDINARY_API_SECRET=your-api-secret
+    ```
+
+8. Install the backend dependencies:
+    ```sh
+    npm install
+    ```
+
+9. Start the backend server:
+    ```sh
+    npm start
+    ```
+
+10. In the `reactnative` directory, start the Expo server:
+    ```sh
+    cd ../reactnative
+    npx expo start -c
+    ```
+
+11. Scan the generated QR code with the Expo Go app to test the application.
+
+## Additional Resources
+
+- [YouTube Video for MongoDB Setup](#)
+- [Cloudinary Dashboard](https://cloudinary.com/)
+
+This completes the installation and setup process. If you encounter any issues, refer to the respective documentation or support resources.
+
 
 ## Credits and acknowledgements
 
