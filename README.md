@@ -15,6 +15,7 @@ Repository of CONSERVE - submission for DEVPOST - TriValley Summer Long Hackatho
 - [What's next for CONSERVE](#whats-next-for-conserve)
 - [Additional project resources](#additional-project-resources)
 - [Credits and acknowledgements](#credits-and-acknowledgements)
+- [Contributors](##Contributors)
 - [Installation Manual](#Installation-Manual)
   
 ## Inspiration for CONSERVE
