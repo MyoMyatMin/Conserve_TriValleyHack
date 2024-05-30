@@ -4,7 +4,6 @@ const noonRecord = async (Record, req, res) => {
   try {
     const user_id = req.user._id;
     const { data } = req.body;
-    console.log(data);
 
     const startOfToday = getStartOfToday();
     const existingRecord = await Record.findOne({
@@ -22,8 +21,7 @@ const noonRecord = async (Record, req, res) => {
       user_id: user_id,
       createdAt: { $gte: startOfToday },
     });
-    console.log(existingDailyRecord.data, "hi");
-    const isConserve = existingDailyRecord.data + data < 1000;
+    const isConserve = existingDailyRecord.data + data < 8.55;
 
     await DailyTotalRecord.updateOne(
       { _id: existingDailyRecord._id },

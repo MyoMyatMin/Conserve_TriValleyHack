@@ -44,7 +44,7 @@ const MonthDetails = ({ monthlyData }) => {
           <CircularProgressBarTotal
             title={"This month total"}
             percentage={monthlyData[4]?.thismonthTotal}
-            max={100000}
+            max={256.5}
             radius={130}
           />
         </TouchableOpacity>
@@ -55,7 +55,7 @@ const MonthDetails = ({ monthlyData }) => {
             amount={monthlyData[4]?.thismonthTotal}
             time={'Monthly'}
             type={'Total'}
-            maxAvg={100000}
+            maxAvg={256.5}
             className='flex justify-center items-center mt-4'
           />
         )}
@@ -65,7 +65,7 @@ const MonthDetails = ({ monthlyData }) => {
           <CircularProgressBar
             title={"Consumption"}
             percentage={monthlyData[0]?.thismonthFood}
-            max={33333}
+            max={105}
             radius={32}
             imageSource={icons.Hamburger}
           />
@@ -77,7 +77,7 @@ const MonthDetails = ({ monthlyData }) => {
             amount={monthlyData[0]?.thismonthFood}
             time={'Monthly'}
             type={'Consumption'}
-            maxAvg={100000}
+            maxAvg={105}
             className='flex justify-center items-center mt-4'
           />
         )}
@@ -85,7 +85,7 @@ const MonthDetails = ({ monthlyData }) => {
           <CircularProgressBar
             title={"Transportation"}
             percentage={monthlyData[1]?.thismonthTransport}
-            max={33333}
+            max={150}
             radius={32}
             imageSource={icons.bus}
           />
@@ -97,7 +97,7 @@ const MonthDetails = ({ monthlyData }) => {
             amount={monthlyData[1]?.thismonthTransport}
             time={'Monthly'}
             type={'Transportation'}
-            maxAvg={100000}
+            maxAvg={150}
             className='flex justify-center items-center mt-4'
           />
         )}
@@ -105,7 +105,7 @@ const MonthDetails = ({ monthlyData }) => {
           <CircularProgressBar
             title={"Plastic Usage"}
             percentage={monthlyData[2]?.thismonthRecycle}
-            max={33333}
+            max={1.5}
             radius={32}
             imageSource={icons.trash}
           />
@@ -117,7 +117,7 @@ const MonthDetails = ({ monthlyData }) => {
             amount={monthlyData[2]?.thismonthRecycle}
             time={'Monthly'}
             type={'PlasticUsage'}
-            maxAvg={100000}
+            maxAvg={1.5}
             className='flex justify-center items-center mt-4'
           />
         )}
@@ -145,7 +145,7 @@ const MonthDetails = ({ monthlyData }) => {
               data={data}
               width={300}
               height={240}
-              maxValue={100000}
+              maxValue={440}
               noOfSections={4}
               isAnimated={true}
               color1="#26D6AF"

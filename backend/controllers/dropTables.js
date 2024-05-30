@@ -6,11 +6,12 @@ import DailyTotalRecord from "../models/dailyTotalRecordModel.js";
 import DailyStreak from "../models/dayStreakModel.js";
 
 const dropTables = async () => {
-  await mongoose.connection.dropCollection("foodrecords");
-  await mongoose.connection.dropCollection("recyclingrecords");
-  await mongoose.connection.dropCollection("transportationrecords");
-  await mongoose.connection.dropCollection("dailytotalrecords");
-  await mongoose.connection.dropCollection("dailystreaks");
+  // await mongoose.connection.dropCollection("foodrecords");
+  // await mongoose.connection.dropCollection("recyclingrecords");
+  // await mongoose.connection.dropCollection("transportationrecords");
+  // await mongoose.connection.dropCollection("dailytotalrecords");
+  // await mongoose.connection.dropCollection("dailystreaks");
+  await mongoose.connection.dropCollection("electricityrecords");
   //await mongoose.connection.dropCollection("dummies");
   // await mongoose.connection.dropCollection("users");
 

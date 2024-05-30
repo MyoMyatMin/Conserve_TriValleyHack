@@ -20,7 +20,7 @@ const morningRecord = async (Record, req, res) => {
       createdAt: { $gte: startOfToday },
     });
     if (existingDailyRecord) {
-      const isConserve = existingDailyRecord.data + data < 1000;
+      const isConserve = existingDailyRecord.data + data < 8.55;
       await DailyTotalRecord.updateOne(
         { _id: existingDailyRecord._id },
         {
@@ -36,7 +36,7 @@ const morningRecord = async (Record, req, res) => {
       const newTotalRecord = new DailyTotalRecord({
         user_id: user_id,
         data: resultRecord.data,
-        isConserve: resultRecord.data < 1000,
+        isConserve: resultRecord.data < 8.55,
         //food_id: resultRecord._id,
       });
       await newTotalRecord.save();

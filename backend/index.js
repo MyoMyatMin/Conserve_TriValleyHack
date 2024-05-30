@@ -15,6 +15,7 @@ import { v2 as cloudinary } from "cloudinary";
 import getProfileInfosRoutes from "./routes/getProfileInfosRoutes.js";
 import electricityRecordRoutes from "./routes/electricityRecordRoutes.js";
 import generateDummyFinal from "./controllers/generateDummyFinal.js";
+import electricityDummy from "./controllers/electricityDummy.js";
 
 const app = express();
 dotenv.config();
@@ -42,10 +43,29 @@ app.use("/api/getProfileInfos", getProfileInfosRoutes);
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
   connectDB();
-  //  dropTables();
-  //deleteRecordsByUserId("664d9ad72037ed7c1238c526");
-  //generateDummyFinal();
-  // generateData();
+  // generateDummyFinal();
+  // dropTables();
+  // deleteRecordsByUserId("664d9ad72037ed7c1238c526");
+  // const yearData = [
+  //   { data: 115, forMonth: "2023-06" },
+  //   { data: 125, forMonth: "2023-07" },
+  //   { data: 110, forMonth: "2023-08" },
+  //   { data: 101, forMonth: "2023-09" },
+  //   { data: 115, forMonth: "2023-10" },
+  //   { data: 129, forMonth: "2023-11" },
+  //   { data: 130, forMonth: "2023-12" },
+  //   { data: 118, forMonth: "2024-01" },
+  //   { data: 124, forMonth: "2024-02" },
+  //   { data: 121, forMonth: "2024-03" },
+  //   { data: 119, forMonth: "2024-04" },
+  //   { data: 108, forMonth: "2024-05" },
+  // ];
+
+  // const userId = "664216f602e3f37efbfc5023"; // Replace with actual user ID
+  // //const userId = "664d9ad72037ed7c1238c526";
+  // electricityDummy(userId, yearData);
+  // generateDummyFinal();
+  // // generateData();
 
   //generateDataForStreak();
 });

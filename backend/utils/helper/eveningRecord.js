@@ -32,7 +32,7 @@ const eveningRecord = async (Record, req, res) => {
       //food_id: existingRecord._id, //to be fixed
       createdAt: { $gte: startOfToday },
     });
-    const isConserve = existingDailyRecord.data + data < 1000;
+    const isConserve = existingDailyRecord.data + data < 8.55;
     await DailyTotalRecord.updateOne(
       { _id: existingDailyRecord._id },
       {
@@ -74,10 +74,10 @@ const eveningRecord = async (Record, req, res) => {
       if (oneMonthSA) {
         unlockedAchievements.push(oneMonthSA);
       }
-      if (existingDailyRecord.data + data < 1000) {
+      if (existingDailyRecord.data + data < 8.55) {
         await User.updateOne(
           { _id: user_id },
-          { $set: { conserveAmount: 1000 - (existingDailyRecord.data + data) } }
+          { $set: { conserveAmount: 8.55 - (existingDailyRecord.data + data) } }
         );
       }
       if (unlockedAchievements.length > 0) {
