@@ -171,7 +171,7 @@ By focusing on these areas, CONSERVE aims to become a comprehensive platform for
 - [Resource research links](https://ourworldindata.org/food-choice-vs-eating-local)
 - [ChatGPT](https://chatgpt.com/)
 
-Created by
+## Contributors
 - [Myo Myat Min](https://github.com/MyoMyatMin)
 - [Bhone Pyae Kyaw](https://github.com/BhonePyae-Kyaw)
 - [Noel Paing Oak Soe](https://github.com/NoelPOS)
