@@ -15,6 +15,7 @@ Repository of CONSERVE - submission for DEVPOST - TriValley Summer Long Hackatho
 - [What's next for CONSERVE](#whats-next-for-conserve)
 - [Additional project resources](#additional-project-resources)
 - [Credits and acknowledgements](#credits-and-acknowledgements)
+- [Installation Manual](#Installation-Manual)
   
 ## Inspiration for CONSERVE
 
@@ -148,10 +149,13 @@ By focusing on these areas, CONSERVE aims to become a comprehensive platform for
 - [Figma](https://www.figma.com/design/R5zoG0VakWzIeMa8Oi6Trj/TriVal-Hack---FIGMA?node-id=433-18&t=Vp9nDTiadINt1aNJ-1)
 - [Trello](https://trello.com/invite/b/X5bDfT93/ATTIfaf4a1241ff3cd0b2e8560304c0473cd3329437A/trivalley-hacks)
 
+## Installation Manual
+
+
 ## Credits and acknowledgements
 
-- [React Native Development lessons] (https://youtu.be/ZBCUegTZF7M?si=4PJ2sJkgL6MlSLZx)
-- [Landing Page Reference] (https://www.youtube.com/watch?v=wXnlHIvKnTM&list=PL07efmqYWHZ8jroJAkkFB2s4ZKpVNCOQa&index=1)
+- [React Native Development lessons](https://youtu.be/ZBCUegTZF7M?si=4PJ2sJkgL6MlSLZx)
+- [Landing Page Reference](https://www.youtube.com/watch?v=wXnlHIvKnTM&list=PL07efmqYWHZ8jroJAkkFB2s4ZKpVNCOQa&index=1)
 - [Image resources - vecteezy](https://www.vecteezy.com/)
 - [Image resources - shutterstock](https://www.shutterstock.com/th/)
 - [Image resources - gencraft](https://gencraft.com/)
@@ -166,6 +170,24 @@ By focusing on these areas, CONSERVE aims to become a comprehensive platform for
 - [Resource research links](https://www.carbontrust.com/en-as)
 - [Resource research links](https://ourworldindata.org/food-choice-vs-eating-local)
 - [ChatGPT](https://chatgpt.com/)
+
+Created by
+- [Myo Myat Min](https://github.com/MyoMyatMin)
+- [Bhone Pyae Kyaw](https://github.com/BhonePyae-Kyaw)
+- [Noel Paing Oak Soe](https://github.com/NoelPOS)
+- [Moe Myint Moe San](https://github.com/Lucassan4225)
+- [Kyaw Ye Lwin @ Anmol](https://github.com/MarioK404)
+
+## Call to Action
+
+If you find this project interesting, please consider:
+
+- ⭐ Starring the repository to show your support.
+- 🐛 Reporting any issues or bugs in the [issues section](https://github.com/MyoMyatMin/CONSERVE/issues).
+- 📥 Forking the project to contribute.
+
+Thank you for checking out CONSERVE! Let's make a positive impact on our environment together.
+  
 
 
 
