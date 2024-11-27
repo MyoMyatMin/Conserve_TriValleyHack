@@ -1,6 +1,10 @@
 # CONSERVE X TriValley Summer Long Hackathon
 Repository of CONSERVE - submission for DEVPOST - TriValley Summer Long Hackathon
 
+## Project Showcase
+
+[Watch the Project Showcase on YouTube](https://youtu.be/4goKB3d1ghA?si=22u2PHYNzOVVUyGG)
+
 ## Table of contents
 
 - [Inspiration for CONSERVE](#inspiration-for-conserve)
