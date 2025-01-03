@@ -292,7 +292,7 @@ This completes the installation and setup process. If you encounter any issues, 
 - [Bhone Pyae Kyaw](https://github.com/BhonePyae-Kyaw)
 - [Noel Paing Oak Soe](https://github.com/NoelPOS)
 - [Moe Myint Moe San](https://github.com/Lucassan4225)
-- [Kyaw Ye Lwin @ Anmol](https://github.com/MarioK404)
+- [Anmol Sharma](https://github.com/AlpakaaaaaScript)
 
 ## Call to Action
 
