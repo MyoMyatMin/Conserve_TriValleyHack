@@ -5,6 +5,7 @@ import helmet from "helmet";
 import cors from "cors";
 
 import userRoutes from "./routes/userRoutes.js";
+import surveysRoutes from "./routes/surveys.js";
 import connectDB from "./db/connectDB.js";
 import foodRecordRoutes from "./routes/foodRecordRoutes.js";
 import trasportationRecordRoutes from "./routes/transportationRecordRoutes.js";
@@ -48,6 +49,7 @@ app.use("/api/electricity", electricityRecordRoutes);
 app.use("/api/dummy", dummyRoutes);
 app.use("/api/getTotalRecord", getTotalRecordsRoutes);
 app.use("/api/getProfileInfos", getProfileInfosRoutes);
+app.use("/api/surveys", surveysRoutes);
 // Start the server
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
