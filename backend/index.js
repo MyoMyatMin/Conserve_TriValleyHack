@@ -21,6 +21,8 @@ import electricityRecordRoutes from "./routes/electricityRecordRoutes.js";
 import generateDummyFinal from "./controllers/generateDummyFinal.js";
 import electricityDummy from "./controllers/electricityDummy.js";
 import job from "./cron/cron.js";
+import mockDataRoutes from "./routes/mockDataRoutes.js";
+import { CronJob } from "cron";
 
 const app = express();
 dotenv.config();
@@ -50,11 +52,12 @@ app.use("/api/dummy", dummyRoutes);
 app.use("/api/getTotalRecord", getTotalRecordsRoutes);
 app.use("/api/getProfileInfos", getProfileInfosRoutes);
 app.use("/api/surveys", surveysRoutes);
+//app.use("/api/mock", mockDataRoutes);
 // Start the server
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
   connectDB();
-
+  job.start();
   // generateDummyFinal();
   // dropTables();
   // deleteRecordsByUserId("664d9ad72037ed7c1238c526");
