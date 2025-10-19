@@ -21,7 +21,7 @@ import electricityRecordRoutes from "./routes/electricityRecordRoutes.js";
 import generateDummyFinal from "./controllers/generateDummyFinal.js";
 import electricityDummy from "./controllers/electricityDummy.js";
 import job from "./cron/cron.js";
-import mockDataRoutes from "./routes/mockDataRoutes.js";
+// import mockDataRoutes from "./routes/mockDataRoutes.js";
 import { CronJob } from "cron";
 
 const app = express();
